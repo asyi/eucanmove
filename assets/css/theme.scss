@@ -120,26 +120,32 @@ img, img:hover {
 }
 .sidebar {
     position: fixed;
-    left: 0px;
+    right: 0px;
     top: 0px;
-    width: 80px;
-    height: 100%;
-    border-right: solid rgba(0, 0, 0, 0.07) 1px;
+    width: 100%;
+    height: 60px;
+    border-left: solid rgba(0, 0, 0, 0.07) 1px;
     z-index: 1022;
     background:#fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid #dedee0;
 }
 .nav-icon {
     position: fixed;
-    left: 15px;
-    top: 15px;
+    right: 15px;
+    top: 0px;
     width: 50px;
-    height: 50px;
+    height: 55px;
     cursor: pointer;
     border-radius: 30px;
     z-index: 1026;
     .hamburger-bar {
         width: 18px;
-        height: 2px;
+        height: 0px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -190,13 +196,13 @@ img, img:hover {
 #menu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100%;
     width: 420px;
     background: #fff;
     padding: 0;
     margin: 0;
-    transform: translate(-100%, 0);
+    transform: translate(200%, 0);
     z-index: 1022;
     &.active {
         transform: translate(0%, 0);
@@ -556,9 +562,9 @@ img, img:hover {
 }
 .wrap-search {
     position: fixed;
-    left: 30px;
-    bottom: 25px;
     z-index: 1026;
+    top: 10px;
+    left: 25px;
 }
 .modal-open .modal {
     background: rgba(0,0,0,0.3);
@@ -669,7 +675,7 @@ body.active-side {
         position:relative;
     }
     .container {
-        padding-left:15px;
+        padding-right:15px;
     }
     .site-content {
         padding-top:0;
@@ -682,7 +688,7 @@ body.active-side {
     .wrap-search {
         right: 25px;
         display: flex;
-        left: unset;
+        right: unset;
         z-index:0;
     }
     .share {
