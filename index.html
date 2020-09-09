@@ -5,7 +5,7 @@ title: Home
 
 <!-- Posts Index
 ================================================== -->
-<div class="blog-grid-container">
+<div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}">
     {% for post in paginator.posts %}
         {% include postbox.html %}
     {% endfor %}

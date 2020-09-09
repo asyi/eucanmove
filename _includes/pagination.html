@@ -1,4 +1,10 @@
-{% if paginator.total_pages > 1 %}
+{% if paginator.page %}
+  {% assign offset = paginator.page | minus:1 | times:paginator.per_page %}
+  {% assign currentPage = paginator.page %}
+{% else %}
+  {% assign offset = 0 %}
+  {% assign currentPage = 1 %}
+{% endif %}
 <div class="pagination">
   {% if paginator.previous_page %}
     <a class="ml-1 mr-1" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; </a>
@@ -22,4 +28,13 @@
     <span> &raquo;</span>
   {% endif %}
 </div>
+
+{% assign postCount = site.posts | size %}
+{% assign postsCovered = site.paginate | plus:offset %}
+{% if postsCovered < postCount %}
+  <button class="loadMore">Load more posts</button>
 {% endif %}
+
+
+
+<script src="{{site.baseurl}}/assets/js/pagination.js"></script>
