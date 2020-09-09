@@ -112,12 +112,16 @@ $(document).ready(function(){
 });
 
 $(document).keyup(function(e) {
-	if (e.keyCode == 27) { 
-		$(".nav-icon").removeClass('active');
-		$("#menu").removeClass('active');
-		$("#blackover-nav").removeClass('active');
-		$("body").removeClass('active-side');
-	}
+    // if (e.keyCode == 27 && document.getElementsByClassName('modal-content')[0]) {
+    //     $('#lunrsearchresults').hide( 5 );
+    //     $( "body" ).removeClass( "modal-open" );
+    // }
+    if (e.keyCode == 27) {
+        $(".nav-icon").removeClass('active');
+        $("#menu").removeClass('active');
+        $("#blackover-nav").removeClass('active');
+        $("body").removeClass('active-side');
+    }
 });
 
 
