@@ -6,6 +6,7 @@ function loadMorePosts() {
   var totalPages = parseInt($blogContainer.attr("data-totalPages"));
   $(this).addClass("loading");
 
+// if initial source is index
 $.get("/jekyll-theme-memoirs/page" + nextPage, function (data) {
     var blogGridItems = $.parseHTML(data);
     var $articles = $(blogGridItems).find(".blog-grid-item");
