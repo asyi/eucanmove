@@ -1,0 +1,47 @@
+<script src="{{site.baseurl}}/assets/js/lunr.js"></script>
+
+<style>
+    
+</style>
+
+<div class="wrap-search">
+    <div id="search-icon-wrapper" class="d-flex align-items-center">
+        <button id="search-button" class="search-button-disabled"><i id="search-icon" class="fas fa-search show-search"></i></button>
+        <!-- Begin Search Box
+        ================================================== -->
+
+        <form class="bd-search ml-3 sidebar-search" onSubmit="return lunr_search(document.getElementById('sidebar-lunrsearch').value);">
+            <input type="text" class="form-control bigradius text-small launch-modal-search" id="sidebar-lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+        </form>
+
+        <!-- End Search Box
+        ================================================== -->
+    </div>
+</div>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script>
+    document.getElementById("search-button").addEventListener("click", function (e) {
+        var target = e.target;
+
+        if ($(window).width() >= 1025) {
+            $('#search-button').removeClass('search-button-disabled');
+            target.classList.toggle("fa-search");
+            target.classList.toggle("fa-times");
+        }
+    }, false);
+
+    document.getElementsByTagName("body")[0].onresize = function() {
+        if ($(window).width() <= 1024) {
+            $('#search-icon').removeClass('fa-times');
+            $('#search-icon').addClass('fa-search');
+            $('#search-button').addClass('search-button-disabled');
+        }
+    }
+
+</script>
+
+<script src="{{site.baseurl}}/assets/js/lunrsearchengine.js"></script>
