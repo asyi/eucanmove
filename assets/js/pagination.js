@@ -6,12 +6,10 @@ function loadMorePosts() {
   var _this = this;
 
   var pathname = window.location.pathname;
-  console.log("path", pathname)
   var $blogContainer = $(".blog-grid-container");
   $(this).addClass("loading");
 
   if (pathname.includes("/tags")) {
-    console.log("tag path")
     var nextTag = parseInt($blogContainer.attr("data-tag")) + 1;
     var totalTags = parseInt($blogContainer.attr("data-totalTags"));
 
@@ -32,7 +30,7 @@ function loadMorePosts() {
     console.log("main path")
     var nextPage = parseInt($blogContainer.attr("data-page")) + 1;
     var totalPages = parseInt($blogContainer.attr("data-totalPages"));
-    
+
     $.get(pathname + "/page/" + nextPage, function (data) {
       var blogGridItems = $.parseHTML(data);
       var $articles = $(blogGridItems).find(".blog-grid-item");
@@ -40,7 +38,7 @@ function loadMorePosts() {
       if (totalPages == nextPage) {
         $(".loadMore").remove();
       }
-    
+
       $(_this).removeClass("loading");
     });
   }
