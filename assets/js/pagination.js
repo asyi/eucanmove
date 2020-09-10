@@ -7,7 +7,7 @@ function loadMorePosts() {
   $(this).addClass("loading");
 
 // if initial source is index
-$.get("/jekyll-theme-memoirs/page" + nextPage, function (data) {
+$.get("/jekyll-theme-memoirs/page/" + nextPage, function (data) {
     var blogGridItems = $.parseHTML(data);
     var $articles = $(blogGridItems).find(".blog-grid-item");
     $blogContainer.attr("data-page", nextPage).append($articles);

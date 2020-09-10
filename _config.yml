@@ -34,13 +34,13 @@ authors:
 
 # Plugins
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
   - jekyll-figure
-    
+
 # Archives
 jekyll-archives:
   enabled:
@@ -48,11 +48,13 @@ jekyll-archives:
   layout: archive
   permalinks:
     category: '/category/:name/'
-    
-# Pagination 
-paginate: 6
-paginate_path: /page:num/
-    
+
+# Pagination
+pagination:
+    enabled: true
+    per_page: 6
+    permalink: '/page/:num/'
+
 # Other
 highlighter: none
 markdown: kramdown
