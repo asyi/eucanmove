@@ -10,7 +10,7 @@
 <title>{{ page.title }} | {{site.name}}</title>
 
 {% seo %}
-    
+
 <link href="{{ site.baseurl }}/assets/css/prism.css" rel="stylesheet">
 
 <link href="{{ site.baseurl }}/assets/css/theme.css" rel="stylesheet">
@@ -47,11 +47,13 @@ ga('send', 'pageview');
 <div class="topbar">
     <nav id="menu">
         <ul>
-            <h3>Navigation</h3>
-            <li><a href="{{ site.baseurl }}/">Home</a></li>
-            <li><a href="{{ site.baseurl }}/about">About <span class="badge badge-primary">Memoirs Jekyll Theme</span></a></li>
-            <li><a target="_blank" href="https://bootstrapstarter.com/bootstrap-templates/jekyll-theme-memoirs/">Get Memoirs</a></li>
-            <li><a href="{{ site.baseurl }}/contact">Contact</a></li>
+            {% for item in site.data.navigation.items %}
+                <li>
+                    <a href="{{ site.baseurl }}{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
+                    {{ item.name }}
+                    </a>
+                </li>
+            {% endfor %}
             {% include search-lunr-side.html %}
         </ul>
     </nav>
