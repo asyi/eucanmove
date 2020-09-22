@@ -135,9 +135,20 @@ img, img:hover {
     justify-content: flex-end;
     margin-bottom: 40px;
 }
+.nav-logo {
+    position:fixed;
+    // TODO: make this responsive according to blog container margin
+    left: 59px;
+}
+
+.nav-logo > p {
+    margin-top: revert;
+}
+
 .nav-icon {
     position: fixed;
-    right: 15px;
+    // TODO: make this responsive according to blog container margin
+    right: 45px;
     top: 0px;
     width: 50px;
     height: 55px;
