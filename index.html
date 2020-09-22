@@ -1,12 +1,17 @@
 ---
 layout: default
 title: Home
+pagination:
+    enabled: true
+    sort_reverse: true
+    per_page: 21
 ---
 
 <!-- Posts Index
 ================================================== -->
-<div class="blog-grid-container">
-    {% for post in paginator.posts %}
+<div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}" data-postsPerPage="{{paginator.per_page}}">
+    {% assign sorted_posts = paginator.posts %}
+    {% for post in sorted_posts limit: 21 %}
         {% include postbox.html %}
     {% endfor %}
 </div>
