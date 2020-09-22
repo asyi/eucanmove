@@ -1,0 +1,123 @@
+# config.yml
+
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+local_backend: true
+
+media_folder: 'assets/uploads'
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: '_posts/'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
+      # date and title fields used by collections.slug
+      # However, Netifly CMS requires a frontmatter date field... so Jekyll wont notices date/title changes made in Netifly CMS
+      # Jekyll relies on filename to determine post publish date
+      - { label: 'Title', name: 'title', widget: 'string', required: true }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime', required: true }
+      - {
+          label: 'Author',
+          name: 'author',
+          widget: 'relation',
+          collection: 'authors',
+          display_fields: [display_name],
+          search_fields: [display_name],
+          value_field: 'name',
+          required: true
+        }
+      - { label: 'Body', name: 'body', widget: 'markdown', required: true }
+      - {
+          label: 'Categories',
+          name: 'categories',
+          widget: 'relation',
+          collection: 'categories',
+          display_fields: [category],
+          search_fields: [category],
+          value_field: 'category',
+          multiple: true
+        }
+      - {
+          label: 'Tags',
+          name: 'tags',
+          widget: 'relation',
+          collection: 'tags',
+          display_fields: [tag],
+          search_fields: [tag],
+          value_field: 'tag',
+          multiple: true
+        }
+      - { image: 'Image', name: 'image', widget: 'image', required: true }
+      - { rating: 'Rating', name: 'rating', widget: 'number', required: false }
+  - name: 'authors'
+    label: 'Authors'
+    folder: '_authors/'
+    create: true
+    slug: '{{name}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Short Name (no caps)', name: 'name', widget: 'string' , required: true}
+      - { label: 'Display Name', name: 'display_name', widget: 'string', required: true }
+      - { label: 'Position', name: 'position', widget: 'string', required: false}
+      - { label: 'Description', name: 'body', widget: 'markdown', required: false }
+      - { label: 'Avatar', name: 'avatar', widget: 'image', required: false }
+      - { label: 'Gravatar', name: 'gravatar', widget: 'string', required: false }
+      - { label: 'Email', name: 'email', widget: 'string', required: false }
+      - { label: 'Website', name: 'web', widget: 'string', required: false }
+      - { label: 'Twitter', name: 'twitter', widget: 'string', required: false }
+      - { label: 'Instagram', name: 'instagram', widget: 'string', required: false }
+  - name: 'tags'
+    label: 'Tags'
+    folder: '_tags/'
+    create: true
+    slug: '{{fields.tag}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Tag', name: 'tag', widget: 'string' , required: true}
+  - name: 'categories'
+    label: 'Categories'
+    folder: '_categories/'
+    create: true
+    slug: '{{fields.category}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Category', name: 'category', widget: 'string' , required: true}
+  - name: 'pages'
+    label: 'Pages'
+    editor:
+      preview: false
+    files:
+      - label: 'About Page'
+        name: 'about'
+        file: '_pages/about.md'
+        fields:
+          - { label: 'Title', name: 'title', widget: 'hidden', default: 'about' }
+          - { label: 'Permalink', name: 'permalink', widget: 'hidden', default: '/about' }
+          - { label: 'Comments', name: 'comments', widget: 'hidden', default: 'false' }
+          - { label: 'Image Shadow', name: 'imageshadow', widget: 'hidden', default: 'true' }
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'about' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }
+          - { label: 'Image', name: 'image', widget: 'image' }
+  - name: "config"
+    label: "Config"
+    editor:
+      preview: false
+    files:
+      - label: "Navigation"
+        name: "navigation"
+        file: "_data/navigation.yml"
+        fields:
+          - label: "Navigation Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: Name, name: name, widget: string}
+              - {label: Link, name: link, widget: string}

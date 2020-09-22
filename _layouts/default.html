@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
+<link rel="icon" href="{{ site.baseurl }}/assets/uploads/logo.png">
 
 <title>{{ page.title }} | {{site.name}}</title>
 
 {% seo %}
-    
+
 <link href="{{ site.baseurl }}/assets/css/prism.css" rel="stylesheet">
 
 <link href="{{ site.baseurl }}/assets/css/theme.css" rel="stylesheet">
 
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-
 </head>
 
 {% if jekyll.environment == 'production' %}
@@ -38,42 +38,41 @@ ga('send', 'pageview');
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	</noscript>
 
-<!-- Begin Sidebar Navigation
+
+<div class="site-content {% if page.url == '/index.html' %} firstpage {% endif %}">
+
+<!-- Begin Topbar Navigation
 ================================================== -->
 
-<div class="sidebar">    
-</div>   
+<div class="topbar">
+    <nav id="menu">
+        <ul>
+            {% for item in site.data.navigation.items %}
+                <li>
+                    <a href="{{ site.baseurl }}{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
+                    {{ item.name }}
+                    </a>
+                </li>
+            {% endfor %}
+            {% include search-lunr-side.html %}
+        </ul>
+    </nav>
+    <!-- Begin Search Box
+    ================================================== -->
+    {% include search-lunr-top.html %}
+    <!-- End Search Box
+    ================================================== -->
+</div>
 <div class="nav-icon">
     <div class="hamburger-bar"></div>
 </div>
 <div id="blackover-nav" class="blackover"></div>
-<nav id="menu">
-    <ul>
-        <h3>Navigation</h3>
-        <li><a href="{{ site.baseurl }}/">Home</a></li>
-        <li><a href="{{ site.baseurl }}/about">About <span class="badge badge-primary">Memoirs Jekyll Theme</span></a></li>
-        <li><a target="_blank" href="https://bootstrapstarter.com/bootstrap-templates/jekyll-theme-memoirs/">Get Memoirs</a></li>      
-        <li><a href="{{ site.baseurl }}/contact">Contact</a></li>       
-    </ul>   
-</nav>
 
-{% include search-lunr.html %}
-
-
-<!-- End Sidebar Navigation
+<!-- End Topbar Navigation
 ================================================== -->
-
-<div class="site-content {% if page.url == '/' %} firstpage {% endif %}">
 
 <div class="container">
 
-    <!-- Site Logo/Name
-    ================================================== -->
-   
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
-        <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-    </a>  
-   
 
     <!-- Site Tag
     ================================================== -->
@@ -85,7 +84,7 @@ ga('send', 'pageview');
 
     <!-- Content
     ================================================== -->
-    <div class="main-content">
+    <div class="main-content" >
         {{ content }}
     </div>
 
@@ -93,7 +92,8 @@ ga('send', 'pageview');
     <!-- Newsletter
     ================================================== -->
     <div class="newsletter text-center">
-        <span class="h4"><img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+        <img src="{{ site.baseurl }}/{{ site.logo }}" class="newsletter-logo" alt="{{site.title}}">
+        <span class="h4"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
         <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
             <div class="mc-field-group d-inline-flex">
             <input type="email" placeholder="Your e-mail" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
@@ -102,7 +102,7 @@ ga('send', 'pageview');
         </form>
     </div>
     {% endif %}
-    
+
 </div>
 
 <!-- Begin Footer
@@ -139,5 +139,17 @@ ga('send', 'pageview');
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
 {% endif %}
 
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
