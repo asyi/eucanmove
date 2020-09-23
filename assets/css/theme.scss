@@ -131,14 +131,19 @@ img, img:hover {
     z-index: 100;
     background: #fff;
     border-bottom: 1px solid #dedee0;
-    display: flex;
-    justify-content: flex-end;
     margin-bottom: 40px;
 }
+.nav-items-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .nav-logo {
-    position:fixed;
-    // TODO: make this responsive according to blog container margin
-    left: 59px;
+
 }
 
 .nav-logo > p {
@@ -602,12 +607,12 @@ body.active-side {
 
 //responsive tweaks
 @media (min-width: 768px) {
-    .container, .container-sm, .container-md, .container-lg {
+    .container, .container-sm, .container-md, .container-lg, .nav-items-wrapper {
         max-width: 80%;
     }
 }
 @media (min-width: 1440px) {
-    .container, .container-sm, .container-md, .container-lg {
+    .container, .container-sm, .container-md, .container-lg, .nav-items-wrapper {
         max-width: 1140px;
     }
 }
@@ -620,9 +625,6 @@ body.active-side {
     #menu {
         display: flex;
         justify-content: flex-end;
-        width: 85%;
-        margin-left: auto;
-        margin-right: auto;
 
         .wrap-search {
             z-index: 1026;
@@ -745,7 +747,7 @@ body.active-side {
             }
         }
     }
-    .container {
+    .container, .nav-items-wrapper {
         width: 90%;
         max-width:90%;
     }
@@ -837,6 +839,15 @@ body.active-side {
     .container {
         display: inline;
         padding-right:15px;
+    }
+    .nav-items-wrapper {
+        padding-left: 15px;
+        width: 100%;
+        max-width: 100%;
+        margin: revert;
+    }
+    .nav-icon {
+        right: 0;
     }
     .bd-search {
         visibility: visible;

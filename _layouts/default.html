@@ -45,24 +45,26 @@ ga('send', 'pageview');
 ================================================== -->
 
 <div class="topbar">
-    <div class="nav-logo">
-        <p>Eucanmove</p>
+    <div class="nav-items-wrapper">
+        <div class="nav-logo">
+            <p>Eucanmove</p>
+        </div>
+        <div class="nav-icon">
+            <div class="hamburger-bar"></div>
+        </div>
+        <nav id="menu">
+            <ul>
+                {% for item in site.data.navigation.items %}
+                    <li>
+                        <a href="{{ site.baseurl }}{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
+                        {{ item.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+                {% include search-lunr-side.html %}
+            </ul>
+        </nav>
     </div>
-    <div class="nav-icon">
-        <div class="hamburger-bar"></div>
-    </div>
-    <nav id="menu">
-        <ul>
-            {% for item in site.data.navigation.items %}
-                <li>
-                    <a href="{{ site.baseurl }}{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
-                    {{ item.name }}
-                    </a>
-                </li>
-            {% endfor %}
-            {% include search-lunr-side.html %}
-        </ul>
-    </nav>
     <!-- Begin Search Box
     ================================================== -->
     {% include search-lunr-top.html %}
