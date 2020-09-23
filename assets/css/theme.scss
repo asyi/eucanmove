@@ -707,6 +707,14 @@ body.active-side {
         border: none;
         box-shadow: none;
     }
+
+    .lunrsearchresults-show {
+        display: inherit;
+    }
+
+    .lunrsearchresults-hide {
+        display: none;
+    }
 }
 @media (max-width: 1024px) {
     #menu {
@@ -796,6 +804,14 @@ body.active-side {
         filter: alpha(opacity=65);
         -webkit-box-shadow: none;
         box-shadow: none;
+    }
+
+    .lunrsearchresults-show {
+        display: inherit;
+    }
+
+    .lunrsearchresults-hide {
+        display: none;
     }
 }
 

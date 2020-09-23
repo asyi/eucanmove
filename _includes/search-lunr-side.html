@@ -43,10 +43,12 @@
             $('#search-icon').addClass('fa-search');
             $('#search-button').addClass('search-button-disabled');
             $('.topbar-search').removeClass('search--show');
+            $('#lunrsearchresults').addClass('lunrsearchresults-show');
         } else {
             $('#search-button').removeClass('search-button-disabled');
             $('#search-icon').removeClass('fa-times');
             $('#search-icon').addClass('fa-search');
+            $('#lunrsearchresults').addClass('lunrsearchresults-hide');
         }
     }
 
