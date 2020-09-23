@@ -58,7 +58,7 @@ function lunr_search(term) {
     $('#lunrsearchresults').show( 400 );
     $( "body" ).addClass( "modal-open" );
 
-    document.getElementById('lunrsearchresults').innerHTML = '<div id="resultsmodal" class="modal fade show d-block"  tabindex="-1" role="dialog" aria-labelledby="resultsmodal"> <div class="modal-dialog shadow" role="document"> <div class="modal-content"> <div class="modal-header" id="modtit"> </div> <div class="modal-body"> <ul class="mb-0"> </ul>    </div> <div class="modal-footer"><button id="btnx" type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button></div></div> </div></div>';
+    document.getElementById('lunrsearchresults').innerHTML = '<div aria-labelledby="resultsmodal" class="modal fade show d-block" id="resultsmodal" role="dialog" tabindex="-1"><div class="modal-dialog shadow" role="document"><div class="modal-content"><div class="modal-header-wrapper"><div class="modal-footer"><button class="btn btn-primary btn-close" data-dismiss="modal" id="btnx" type="button">Close</button></div><div class="modal-header" id="modtit"></div></div><div class="modal-body"><ul class="mb-0"></ul></div></div></div></div>';
 
     if(term) {
         document.getElementById('modtit').innerHTML = "<h5 class='modal-title'>Search results for '" + term + "'</h5>" + document.getElementById('modtit').innerHTML;

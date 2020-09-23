@@ -54,6 +54,13 @@ h1,h2,h3,h4,h5,h6 {
 .btn {
     min-width: 180px;
 }
+.btn-close {
+    min-width: 100%;
+}
+
+.modal-footer > * {
+    margin: revert;
+}
 blockquote {
     font-family: Times New Roman;
     font-style: italic;
@@ -562,6 +569,9 @@ img, img:hover {
 .modal-body > ul {
     padding-right: 40px;
 }
+.modal-dialog {
+    margin-top: 3rem;
+}
 .lunrsearchresult {
     .title {
         color:#000;
@@ -614,6 +624,9 @@ body.active-side {
 @media (min-width: 1440px) {
     .container, .container-sm, .container-md, .container-lg, .nav-items-wrapper {
         max-width: 1140px;
+    }
+    .modal-body {
+        padding-left: inherit;
     }
 }
 @media (min-width: 1025px) {

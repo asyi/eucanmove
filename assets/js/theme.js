@@ -114,7 +114,7 @@ $(document).ready(function(){
 $(document).keyup(function(e) {
     //  Custom code to close desktop-view top searchbar
     if (e.keyCode == 27 && document.getElementsByClassName('topbar-search')[0]) {
-        $( "form" ).removeClass( "search--show" );
+        $("form").removeClass("search--show");
         $('#search-button').removeClass('search-button-disabled');
         $('#search-icon').removeClass('fa-times');
         $('#search-icon').addClass('fa-search');
