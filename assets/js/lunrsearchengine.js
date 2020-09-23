@@ -75,7 +75,7 @@ function lunr_search(term) {
                 var body = documents[ref]['body'].substring(0,160)+'...';
                 document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = document.querySelectorAll(
                     '#lunrsearchresults ul'
-                )[0].innerHTML + "<li tabindex=-1 class='lunrsearchresult'><a class='search-link' href='" + url + "'><span class='title'>" + title + "</span><small><span class='body'>"+ body +"</span><span class='url'>"+ url +"</span></small></a></li>";
+                )[0].innerHTML + "<li tabindex=0 class='lunrsearchresult'><a class='search-link' href='" + url + "'><span class='title'>" + title + "</span><small><span class='body'>"+ body +"</span><span class='url'>"+ url +"</span></small></a></li>";
             }
         } else {
             document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = "<li class='lunrsearchresult'>Sorry, no results found. Close & try a different search!</li>";
