@@ -116,7 +116,6 @@ function loadAdditionalPosts(
   _this
 ) {
   if (nextPage === totalPages && postCount <= 5) {
-    // TODO: figure out why articles is not 3!!!!
     var nextPageArticles = $(blogGridItems).find(".blog-grid-item");
     const allArticles = $(blogContainer).find(".blog-grid-item");
     var extendedArticles = $.merge(articles, nextPageArticles);
@@ -138,7 +137,6 @@ function loadAdditionalPosts(
 
     if (filteredBatch.length !== batch.length) {
       blogContainer.attr("data-page", nextPage - 1).append(filteredBatch);
-      // TODO - figure out condition for removing button
       totalPosts = 0;
       batchSize = 0;
       $articles = {};
@@ -153,7 +151,6 @@ function loadAdditionalPosts(
     var extendedArticles = $.merge(articles, nextPageArticles);
     var totalPosts = extendedArticles.length;
 
-    // check if batchSize is less than 12, since we're displaying 12 posts at a time
     var batchSize = totalPosts < batchSize ? totalPosts : batchSize;
 
     var batch;
