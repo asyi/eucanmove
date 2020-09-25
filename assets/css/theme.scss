@@ -243,7 +243,8 @@ img, img:hover {
     width: auto;
     margin: 50px auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    // grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
     grid-gap: 30px;
 }
@@ -309,10 +310,12 @@ img, img:hover {
 }
 .firstpage {
     .blog-grid-item:nth-child(1) {
-        grid-column-start: 1;
-        grid-column-end: 3;
+        // grid-column-start: 1;
+        // grid-column-end: 3;
+        grid-column: 1/5;
         grid-row-start: 1;
-        grid-row-end: 3;
+        // grid-row-end: 3;
+        grid-row-end: 2;
         flex-direction: column;
         align-items: flex-start;
         font-size: 1em;
@@ -328,19 +331,48 @@ img, img:hover {
         }
     }
 
-    .blog-grid-item:nth-child(2), .blog-grid-item:nth-child(3) {
-        .card-text {
-            display:none;
-        }
+    // .blog-grid-item:nth-child(2), .blog-grid-item:nth-child(3) {
+    //     .card-text {
+    //         display:none;
+    //     }
+    //     .img-thumb {
+    //         object-fit:cover;
+    //         height:160px;
+    //         width:100%;
+    //         object-position:top;
+    //     }
+    //     .card-title {
+    //         font-size:18px;
+    //         line-height:1.5;
+    //     }
+    // }
+
+    .blog-grid-item:nth-child(2), .blog-grid-item:nth-child(7), .blog-grid-item:nth-child(10), .blog-grid-item:nth-child(13), .blog-grid-item:nth-child(18) {
+        grid-column: 1/3;
+        // grid-row-start:2;
+    }
+    .blog-grid-item:nth-child(3), .blog-grid-item:nth-child(8), .blog-grid-item:nth-child(11), .blog-grid-item:nth-child(14), .blog-grid-item:nth-child(19) {
+        grid-column: 3/5;
+        // grid-row-start:2;
+    }
+    .blog-grid-item:nth-child(4), .blog-grid-item:nth-child(9), .blog-grid-item:nth-child(12), .blog-grid-item:nth-child(15), .blog-grid-item:nth-child(20) {
+        grid-column: 5/7;
+        // grid-row-start:2;
+    }
+
+    .blog-grid-item:nth-child(5), .blog-grid-item:nth-child(16) {
+        grid-column: 1/4;
+    }
+    .blog-grid-item:nth-child(6), .blog-grid-item:nth-child(17){
+        grid-column: 4/7;
+    }
+    .blog-grid-item:nth-child(21) {
+        grid-column: 1/7;
         .img-thumb {
             object-fit:cover;
-            height:160px;
+            height:400px;
             width:100%;
             object-position:top;
-        }
-        .card-title {
-            font-size:18px;
-            line-height:1.5;
         }
     }
 }
