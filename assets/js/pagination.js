@@ -87,6 +87,10 @@ function loadPosts(
 
   let batch = articles.slice(0, batchSize);
 
+  console.log("BATCH", batch)
+  // for article in batch, add `grid-column: 1/3;`, `grid-column: 3/5`, `grid-column: 5/7;`
+  // based on index number of batch article
+
   blogContainer.attr("data-page", nextPage).append(batch);
 
   $articles = articles.slice(batchSize);
