@@ -11,9 +11,21 @@ pagination:
 ================================================== -->
 <div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}" data-postsPerPage="{{paginator.per_page}}">
     {% assign sorted_posts = paginator.posts %}
+    {% assign totalPosts = site.posts | size %}
+    {% assign postCount = 0 %}
     {% for post in sorted_posts limit: 21 %}
-        {% include postbox.html %}
+        {% assign postCount = postCount | plus: 1 %}
+        {% if postCount == 5 %}
+            <div id="trial-run"> 
+            {% include postbox.html %}
+            </div>
+        {% elsif postCount == 6 %}
+            {% include postbox.html %}
+        {% else %}
+            {% include postbox.html %}
+        {% endif %}
     {% endfor %}
+            <h1> POST SIZE: {{totalPosts}} </h1> 
 </div>
 
 <!-- Pagination
