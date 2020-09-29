@@ -12,20 +12,32 @@ pagination:
 <div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}" data-postsPerPage="{{paginator.per_page}}">
     {% assign sorted_posts = paginator.posts %}
     {% assign totalPosts = site.posts | size %}
-    {% assign postCount = 0 %}
-    {% for post in sorted_posts limit: 21 %}
-        {% assign postCount = postCount | plus: 1 %}
-        {% if postCount == 5 %}
-            <div id="trial-run"> 
+
+    <div class="blog-grid-container-section-1">
+        {% for post in site.posts limit: 4 %}
             {% include postbox.html %}
-            </div>
-        {% elsif postCount == 6 %}
+        {% endfor %}
+    </div>
+    <div class="blog-grid-container-section-2">
+        {% for post in site.posts limit: 5 offset: 4 %}
             {% include postbox.html %}
-        {% else %}
+        {% endfor %}
+    </div>
+    <div class="blog-grid-container-section-3">
+        {% for post in site.posts limit: 6 offset: 9 %}
             {% include postbox.html %}
-        {% endif %}
-    {% endfor %}
-            <h1> POST SIZE: {{totalPosts}} </h1> 
+        {% endfor %}
+    </div>
+    <div class="blog-grid-container-section-4">
+        {% for post in site.posts limit: 5 offset: 15 %}
+            {% include postbox.html %}
+        {% endfor %}
+    </div>
+    <div class="blog-grid-container-section-5">
+        {% for post in site.posts limit: 1 offset: 20 %}
+            {% include postbox.html %}
+        {% endfor %}
+    </div>
 </div>
 
 <!-- Pagination
