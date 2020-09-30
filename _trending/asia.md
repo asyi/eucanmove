@@ -1,4 +1,0 @@
----
-trending:
-  - Asia
----
