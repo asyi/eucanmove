@@ -7,8 +7,8 @@ local_backend: true
 
 media_folder: 'assets/uploads'
 collections:
-  - name: 'blog'
-    label: 'Blog'
+  - name: 'posts'
+    label: 'Posts'
     folder: '_posts/'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
@@ -90,6 +90,25 @@ collections:
       preview: false
     fields:
       - { label: 'Category', name: 'category', widget: 'string' , required: true}
+  - name: 'trending'
+    label: 'Trending'
+    folder: '_trending/'
+    create: true
+    slug: '{{fields.trending}}'
+    editor:
+      preview: false
+    fields:
+      - {
+        label: 'Trending',
+         name: 'trending',
+         widget: 'relation',
+         collection: 'posts',
+         display_fields: [title],
+         search_fields: [title],
+         value_field: 'title',
+         multiple: true,
+         required: true
+        }
   - name: 'pages'
     label: 'Pages'
     editor:

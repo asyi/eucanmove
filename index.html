@@ -13,6 +13,7 @@ pagination:
     {% assign totalPosts = site.posts | size %}
 
     <div class="blog-grid-container-section-1">
+        {% include trending.html %}
         {% for post in site.posts limit: 4 %}
             {% include postbox.html %}
         {% endfor %}
