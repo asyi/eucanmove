@@ -9,6 +9,7 @@ function loadMorePosts() {
 
   const pathname = window.location.pathname;
   const $blogContainer = $(".blog-grid-container");
+  const $blogGridContainerSection5 = $(".blog-grid-container-section-5");
   $(this).addClass("loading");
 
   if (pathname.includes("/tags")) {
@@ -33,9 +34,10 @@ function loadMorePosts() {
     if (clickCount == 1) {
       $.get(`${pathname}page/${nextPage}`, data => {
         const blogGridItems = $.parseHTML(data);
-        $articles = $(blogGridItems).find(".blog-grid-item");
 
-        loadPosts($articles, 6, $blogContainer, nextPage, totalPages, _this);
+        $articles = $(blogGridItems).find(".blog-grid-item").slice(21);
+
+        loadPosts($articles, 6, $blogGridContainerSection5, nextPage, totalPages, _this);
       });
     } else if (clickCount >= 2 && postCount <= 5) {
       // if there are less than 5 remaining posts, append them to the next
@@ -43,23 +45,20 @@ function loadMorePosts() {
       $.get(`${pathname}page/${nextPage}`, data => {
         const blogGridItems = $.parseHTML(data);
 
-        loadAdditionalPosts(
-          $articles,
-          6,
-          $blogContainer,
+        loadLastPosts(
+          $blogGridContainerSection5,
           blogGridItems,
           nextPage,
-          totalPages,
           _this
         );
       });
     } else if (clickCount >= 2) {
-      $.get(`${pathname}page/${nextPage - 1}`, data => {
+      $.get(`${pathname}page/${nextPage}`, data => {
         loadPosts(
           $articles,
           6,
-          $blogContainer,
-          nextPage - 1,
+          $blogGridContainerSection5,
+          nextPage,
           totalPages,
           _this
         );
@@ -71,7 +70,7 @@ function loadMorePosts() {
 function loadPosts(
   articles,
   batchSize,
-  blogContainer,
+  blogContainerSection,
   nextPage,
   totalPages,
   _this
@@ -83,11 +82,12 @@ function loadPosts(
     }
   }
 
+
   var batchSize = totalPosts < batchSize ? totalPosts : batchSize;
 
   let batch = articles.slice(0, batchSize);
 
-  blogContainer.attr("data-page", nextPage).append(batch);
+  blogContainerSection.attr("data-page", nextPage).append(batch);
 
   $articles = articles.slice(batchSize);
 
@@ -106,71 +106,22 @@ function loadPosts(
   $(_this).removeClass("loading");
 }
 
-function loadAdditionalPosts(
-  articles,
-  batchSize,
-  blogContainer,
+function loadLastPosts(
+  blogContainerSection,
   blogGridItems,
   nextPage,
-  totalPages,
   _this
 ) {
-  if (nextPage === totalPages && postCount <= 5) {
-    var nextPageArticles = $(blogGridItems).find(".blog-grid-item");
-    const allArticles = $(blogContainer).find(".blog-grid-item");
-    var extendedArticles = $.merge(articles, nextPageArticles);
-    var totalPosts = extendedArticles.length;
-
-    var batchSize = totalPosts < batchSize ? totalPosts : batchSize;
-
-    var batch;
-    batch = articles.slice(0, batchSize);
-
-    let filteredBatch = batch;
-    for (let i = 0; i < batch.length; i++) {
-      for (let y = 0; y < allArticles.length; y++) {
-        if (batch[i].className == allArticles[y].className) {
-          filteredBatch = $(filteredBatch).not(batch[i]);
-        }
-      }
-    }
-
-    if (filteredBatch.length !== batch.length) {
-      blogContainer.attr("data-page", nextPage - 1).append(filteredBatch);
-      totalPosts = 0;
-      batchSize = 0;
-      $articles = {};
-      $(".loadMore").remove();
-      $(_this).removeClass("loading");
-    } else {
-      blogContainer.attr("data-page", nextPage - 1).append(batch);
-      $articles = extendedArticles.slice(batchSize);
-    }
-  } else {
-    var nextPageArticles = $(blogGridItems).find(".blog-grid-item");
-    var extendedArticles = $.merge(articles, nextPageArticles);
-    var totalPosts = extendedArticles.length;
-
-    var batchSize = totalPosts < batchSize ? totalPosts : batchSize;
+    var remainingArticles = $(blogGridItems).find(".blog-grid-item");
 
     var batch;
 
-    batch = extendedArticles.slice(0, postCount);
+    // Get last remaining elements
+    batch = remainingArticles.slice(Math.max(remainingArticles.length - postCount, 0));
 
-    blogContainer.attr("data-page", nextPage - 1).append(batch);
+    blogContainerSection.attr("data-page", nextPage - 1).append(batch);
 
-    $articles = extendedArticles.slice(batchSize);
-
-    totalPosts -= batch.length;
-    postCount = totalPosts;
-  }
-
-  totalPosts = totalPosts - batchSize;
-  postCount = totalPosts;
-
-  if (totalPages == nextPage && totalPosts <= 0) {
     $(".loadMore").remove();
-  }
+    $(_this).removeClass("loading");
 
-  $(_this).removeClass("loading");
 }

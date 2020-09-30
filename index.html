@@ -10,7 +10,6 @@ pagination:
 <!-- Posts Index
 ================================================== -->
 <div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}" data-postsPerPage="{{paginator.per_page}}">
-    {% assign sorted_posts = paginator.posts %}
     {% assign totalPosts = site.posts | size %}
 
     <div class="blog-grid-container-section-1">
@@ -35,6 +34,11 @@ pagination:
     </div>
     <div class="blog-grid-container-section-5">
         {% for post in site.posts limit: 1 offset: 20 %}
+            {% include postbox.html %}
+        {% endfor %}
+    </div>
+    <div id="blog-grid-container-section-6" class="blog-grid-container-section-6-hidden">
+        {% for post in site.posts offset: 21 %}
             {% include postbox.html %}
         {% endfor %}
     </div>

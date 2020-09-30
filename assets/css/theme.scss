@@ -255,6 +255,10 @@ img, img:hover {
     background-color: #ffffff;
 }
 
+.blog-grid-container-section-6-hidden {
+    display: none;
+}
+
 .blog-grid-container-section-2,
 .blog-grid-container-section-4 {
     background-color: #f4f4f4;
@@ -264,7 +268,8 @@ img, img:hover {
 .blog-grid-container-section-2,
 .blog-grid-container-section-3,
 .blog-grid-container-section-4,
-.blog-grid-container-section-5 {
+.blog-grid-container-section-5,
+.blog-grid-container-section-6-visible {
     width: auto;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -826,34 +831,11 @@ body.active-side {
         .blog-grid-container-section-2 > .blog-grid-item:nth-child(5),
         .blog-grid-container-section-4 > .blog-grid-item:nth-child(3),
         .blog-grid-container-section-4 > .blog-grid-item:nth-child(4),
-        .blog-grid-container-section-4 > .blog-grid-item:nth-child(5) {
+        .blog-grid-container-section-4 > .blog-grid-item:nth-child(5),
+        .blog-grid-container-section-3 > .blog-grid-item,
+        .blog-grid-container-section-5 > .blog-grid-item {
             grid-column: auto / span 2;
         }
-
-        .blog-grid-container-section-3 > .blog-grid-item:nth-child(1),
-        .blog-grid-container-section-3 > .blog-grid-item:nth-child(2),
-        .blog-grid-container-section-3 > .blog-grid-item:nth-child(3) {
-            grid-column: auto / span 2;
-        }
-        .blog-grid-container-section-3 > .blog-grid-item:nth-child(4),
-        .blog-grid-container-section-3 > .blog-grid-item:nth-child(5),
-        .blog-grid-container-section-3 > .blog-grid-item:nth-child(6) {
-            grid-column: auto / span 2;
-        }
-
-        // .blog-grid-item:nth-child(n+3):nth-child(-n+4),
-        // .blog-grid-item:nth-child(n+7):nth-child(-n+15),
-        // .blog-grid-item:nth-child(n+18):nth-child(-n+20),
-        // .blog-grid-item:nth-child(n + 22) {
-        //     grid-column: auto / span 2;
-        // }
-
-        // .blog-grid-item:nth-child(5),
-        // .blog-grid-item:nth-child(6),
-        // .blog-grid-item:nth-child(16),
-        // .blog-grid-item:nth-child(17) {
-        //     grid-column: auto / span 3;
-        // }
 
         .blog-grid-container-section-5 > .blog-grid-item:nth-child(1) {
             grid-column: 1/7;
