@@ -104,7 +104,7 @@ collections:
          name: 'trending',
          label: 'Trending',
          widget: 'relation',
-         collection: 'posts', 
+         collection: 'posts',
          display_fields: [title],
          search_fields: [title],
          value_field: 'title',
