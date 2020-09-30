@@ -1,5 +1,5 @@
 <!-- begin trending -->
-
+{% assign trending = site.trending["13-3"] %}
 <div class="blog-grid-trending">
     <div class="blog-grid-trending-heading">
         <div class="blog-grid-trending-icon">
@@ -7,7 +7,7 @@
 
         <div class="blog-grid-trending-posts-title">
             <h4 class="blog-grid-trending-posts-title-text">
-                Trending posts this week
+                Trending posts this week {{ trending | size }}
             </h4>
         </div>
     </div>

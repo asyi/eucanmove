@@ -99,8 +99,8 @@ collections:
       preview: false
     fields:
       - {
-        label: 'Trending',
          name: 'trending',
+         label: 'Trending',
          widget: 'relation',
          collection: 'posts',
          display_fields: [title],

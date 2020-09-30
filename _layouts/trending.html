@@ -5,4 +5,6 @@ permalink: "/trending.html"
 ---
 
 
-<h1> Trending Posts </h1>
+{% for trend in site.trending %}
+<h1>Trend title: {{trend[0]}}</h1>
+{% endfor %
