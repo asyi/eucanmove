@@ -66,3 +66,5 @@ exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
 collections:
   authors:
     output: true
+  trending:
+    output: true

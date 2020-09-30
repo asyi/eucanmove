@@ -4,8 +4,6 @@ layout: default
 permalink: "/trending.html"
 ---
 
-{% capture trending %}
-  {% for trend in site.trending %}
-    <h1> TRENDING {{ trend[0] }} </h1>
-  {% endfor %}
-{% endcapture %}
+{% for trend in site.trending %}
+<h1> TRENDING {{ trend.trending }} </h1>
+{% endfor %}

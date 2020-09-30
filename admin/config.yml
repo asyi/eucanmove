@@ -98,11 +98,13 @@ collections:
     editor:
       preview: false
     fields:
+      - { label: 'Trend Name', name: 'trendname', widget: 'string' , required: true}
+      - { label: Trend Date, name: 'date', widget: 'datetime' , required: true}
       - {
          name: 'trending',
          label: 'Trending',
          widget: 'relation',
-         collection: 'posts',
+         collection: 'posts', 
          display_fields: [title],
          search_fields: [title],
          value_field: 'title',
