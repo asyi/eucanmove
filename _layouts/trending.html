@@ -5,5 +5,5 @@ permalink: "/trending.html"
 ---
 
 {% for trend in site.trending %}
-<h1> TRENDING {{ trend.trending }} </h1>
+<h1> TRENDING {{trend | jsonify }} {{ trend.trending }} </h1>
 {% endfor %}
