@@ -243,7 +243,6 @@ img, img:hover {
     width: auto;
     margin: 50px auto;
     display: grid;
-    // grid-template-columns: repeat(6, 1fr);
     grid-template-columns: 1fr;
     grid-gap: 60px;
     grid-template-rows: 1fr;
@@ -891,7 +890,7 @@ body.active-side {
             list-style: none;
             width: 100%;
             a {
-                width: 100%;
+                width: 100%;    
                 display: inline-block;
                 padding: 2vh 0px 2vh 0px;
                 line-height: 20px;
@@ -903,12 +902,72 @@ body.active-side {
             }
         }
     }
+
+    .blog-grid-container-section-1,
+    .blog-grid-container-section-2,
+    .blog-grid-container-section-3,
+    .blog-grid-container-section-4,
+    .blog-grid-container-section-5,
+    .blog-grid-container-section-6-visible {
+        padding: inherit;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .blog-grid-container-section-1 > .blog-grid-item:nth-child(2) {
+        grid-column: auto / span 6;
+        .card-title {
+            font-size:28px;
+        }
+        .img-thumb {
+            object-fit:cover;
+            height:400px;
+            width:100%;
+            object-position:top;
+        }
+    }
+
+    .blog-grid-container-section-1 > .blog-grid-item:nth-child(3),
+    .blog-grid-container-section-1 > .blog-grid-item:nth-child(4),
+    .blog-grid-container-section-1 > .blog-grid-item:nth-child(5) {
+        grid-column: auto / span 2;
+    }
+
+    .blog-grid-container-section-2,
+    .blog-grid-container-section-4 {
+        .blog-grid-item:nth-child(1),
+        .blog-grid-item:nth-child(2) {
+            grid-column: auto / span 3;
+        }
+    }
+
+    .blog-grid-container-section-2,
+    .blog-grid-container-section-4 {
+        .blog-grid-item:nth-child(3),
+        .blog-grid-item:nth-child(4),
+        .blog-grid-item:nth-child(5) {
+            grid-column: auto / span 2;
+        }
+    }
+
+    .blog-grid-container-section-5 {
+        .blog-grid-item {
+            grid-column: auto / span 3;
+        }
+        .blog-grid-item:nth-child(1) {
+            grid-column: auto / span 6;
+        }
+    }
+
+    .blog-grid-container-section-3,
+    .blog-grid-container-section-6-visible {
+        .blog-grid-item {
+            grid-column: auto / span 3  ;
+        }
+    }
+
     .container, .nav-items-wrapper {
         width: 90%;
         max-width:90%;
-    }
-    .blog-grid-container {
-        grid-template-columns: 1fr 1fr;
     }
     .newsletter {
         display: flex;
@@ -970,30 +1029,30 @@ body.active-side {
     .blog-grid-container {
         grid-template-columns: 1fr;
     }
-    .firstpage .blog-grid-item:nth-child(1) {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
-    }
-    .blog-grid-item .img-thumb, 
-    .firstpage .blog-grid-item:nth-child(1) .img-thumb, 
-    .firstpage .blog-grid-item:nth-child(2) .img-thumb, 
-    .firstpage .blog-grid-item:nth-child(3) .img-thumb {
-        height:auto;
-    }
-    .newsletter {
-        span.h4 {
-            font-size: 20px;
-        }
-        .mc-field-group input[type="email"] {
-            padding: 4px 10px;
-            min-width: 200px;
-        }
-        .mc-field-group input[type="submit"] {
-            padding: 4px 10px;
-        }
-    }
+    // .firstpage .blog-grid-item:nth-child(1) {
+    //     grid-column-start: 1;
+    //     grid-column-end: 2;
+    //     grid-row-start: 1;
+    //     grid-row-end: 2;
+    // }
+    // .blog-grid-item .img-thumb,
+    // .firstpage .blog-grid-item:nth-child(1) .img-thumb,
+    // .firstpage .blog-grid-item:nth-child(2) .img-thumb,
+    // .firstpage .blog-grid-item:nth-child(3) .img-thumb {
+    //     height:auto;
+    // }
+    // .newsletter {
+    //     span.h4 {
+    //         font-size: 20px;
+    //     }
+    //     .mc-field-group input[type="email"] {
+    //         padding: 4px 10px;
+    //         min-width: 200px;
+    //     }
+    //     .mc-field-group input[type="submit"] {
+    //         padding: 4px 10px;
+    //     }
+    // }
 }
 
 @media (max-width: 600px) {
