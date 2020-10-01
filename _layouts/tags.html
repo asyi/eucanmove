@@ -33,15 +33,17 @@ pagination:
     <h4 class="mt-5 mb-neg-30" id="{{ tag[0] | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag[0] }}</span></h4>
     <div class="blog-grid-container" data-tag="{{ forloop.index }}" data-totalTags="{{site.tags.size}}">
         {% assign pages_list = tag[1] %}
+        {% assign pages_list_size = pages_list | size %}
 
+        <div class="blog-grid-container-section-5">
         {% for post in pages_list %}
             {% if post.title != null %}
                 {% if group == null or group == post.group %}
-
                     {% include postbox.html %}
                 {% endif %}
             {% endif %}
         {% endfor %}
+        </div>
 
         {% assign pages_list = nil %}
         {% assign group = nil %}
@@ -50,10 +52,13 @@ pagination:
     ================================================== -->
     <div class="bottompagination">
         <span class="navigation" role="navigation">
-            {% include pagination.html %}
+            {% if pages_list_size > 9 %}
+                <button class="loadMore">Load more posts</button>
+            {% endif %}
         </span>
     </div>
     <!-- END of Pagination
     ================================================== -->
 {% endfor %}
 
+<script src="{{site.baseurl}}/assets/js/pagination.js"></script>
