@@ -415,7 +415,8 @@ img, img:hover {
     text-align:center;
     margin-left:auto;
     margin-right: auto;
-    margin-top:50px;
+    // this is the same as the container's margin-top
+    margin-top:30px;
     margin-bottom:50px;
 }
 .image-shadow {   
@@ -1032,6 +1033,7 @@ body.active-side {
         grid-column: 1frr;
         padding: 0;
         margin: 0;
+        margin-top: 30px;
         width: 100%;
         max-width: 100%;
     }
@@ -1176,8 +1178,12 @@ body.active-side {
         max-width: 100%;
         margin: revert;
     }
+    .nav-logo {
+        margin-left: 15px;
+    }
     .nav-icon {
         right: 0;
+        margin-right: 15px;
     }
     .bd-search {
         visibility: visible;
