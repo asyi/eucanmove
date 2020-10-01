@@ -244,7 +244,6 @@ img, img:hover {
     margin: 50px auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 60px;
     grid-template-rows: 1fr;
 }
 
@@ -255,7 +254,7 @@ img, img:hover {
 .blog-grid-container-section-1,
 .blog-grid-container-section-3,
 .blog-grid-container-section-5 {
-    background-color: #ffffff;
+    background-color: #dcdbdb;
 }
 
 .blog-grid-container-section-6-hidden {
@@ -264,7 +263,7 @@ img, img:hover {
 
 .blog-grid-container-section-2,
 .blog-grid-container-section-4 {
-    background-color: #f4f4f4;
+    background-color: #ffffff;
 }
 
 .blog-grid-container-section-1,
@@ -909,7 +908,6 @@ body.active-side {
     .blog-grid-container-section-4,
     .blog-grid-container-section-5,
     .blog-grid-container-section-6-visible {
-        padding: inherit;
         grid-template-columns: repeat(6, 1fr);
     }
 
@@ -1021,14 +1019,54 @@ body.active-side {
 }
 
 @media (max-width: 768px) {
+    .container {
+        display: grid;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    .topbar {
+        margin-bottom: 0;
+    }
+    .blog-grid-container {
+        grid-gap: 0;
+        margin: 0;
+    }
+
+    .blog-grid-container-section-1,
+    .blog-grid-container-section-3,
+    .blog-grid-container-section-5 {
+        background-color: #ffffff;
+    }
+
     .blog-grid-container-section-1,
     .blog-grid-container-section-2,
     .blog-grid-container-section-3,
     .blog-grid-container-section-4,
     .blog-grid-container-section-5,
     .blog-grid-container-section-6-visible {
-        padding: inherit;
+        .blog-grid-item {
+            grid-gap: 0px;
+        }
+    }
+
+    .blog-grid-container-section-1,
+    .blog-grid-container-section-2,
+    .blog-grid-container-section-3,
+    .blog-grid-container-section-4,
+    .blog-grid-container-section-5,
+    .blog-grid-container-section-6-visible {
+        padding: 15px 30px;
         grid-template-columns: repeat(6, 1fr);
+    }
+
+    .blog-grid-container-section-1 {
+        padding-top: 30px;
+    }
+
+    .blog-grid-container-section-5 {
+        padding-bottom: 30px;
     }
 
     .blog-grid-container-section-1 > .blog-grid-item:nth-child(2),
@@ -1085,10 +1123,6 @@ body.active-side {
 @media (max-width: 600px) {
     .share, .wrap-search {
         position:relative;
-    }
-    .container {
-        display: inline;
-        padding-right:15px;
     }
     .nav-items-wrapper {
         padding-left: 15px;
