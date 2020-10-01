@@ -36,7 +36,7 @@ pagination:
         {% assign pages_list_size = pages_list | size %}
 
         <div class="blog-grid-container-section-5">
-        {% for post in pages_list %}
+        {% for post in pages_list limit: 12 %}
             {% if post.title != null %}
                 {% if group == null or group == post.group %}
                     {% include postbox.html %}
