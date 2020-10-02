@@ -35,15 +35,38 @@ pagination:
         {% assign pages_list = tag[1] %}
         {% assign pages_list_size = pages_list | size %}
 
-        <div class="blog-grid-container-section-5">
-        {% for post in pages_list limit: 12 %}
-            {% if post.title != null %}
-                {% if group == null or group == post.group %}
-                    {% include postbox.html %}
+        {% if pages_list_size == 1 %}
+            <div class="blog-grid-container-tags" id="blog-grid-container-tags-1-col">
+            {% for post in pages_list %}
+                {% if post.title != null %}
+                    {% if group == null or group == post.group %}
+                        {% include postbox.html %}
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
-        </div>
+            {% endfor %}
+            </div>
+
+        {% elsif pages_list_size == 2 %}
+            <div class="blog-grid-container-tags" id="blog-grid-container-tags-2-col">
+            {% for post in pages_list limit: 12 %}
+                {% if post.title != null %}
+                    {% if group == null or group == post.group %}
+                        {% include postbox.html %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="blog-grid-container-tags" id="blog-grid-container-tags-full">
+            {% for post in pages_list limit: 12 %}
+                {% if post.title != null %}
+                    {% if group == null or group == post.group %}
+                        {% include postbox.html %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
 
         {% assign pages_list = nil %}
         {% assign group = nil %}

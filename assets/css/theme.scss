@@ -251,10 +251,11 @@ img, img:hover {
     display: none;
 }
 
+.blog-grid-container-tags,
 .blog-grid-container-section-1,
 .blog-grid-container-section-3,
 .blog-grid-container-section-5 {
-    background-color: #dcdbdb;
+    background-color: #ffffff;
 }
 
 .blog-grid-container-section-6-hidden {
@@ -263,9 +264,10 @@ img, img:hover {
 
 .blog-grid-container-section-2,
 .blog-grid-container-section-4 {
-    background-color: #ffffff;
+    background-color: #dcdbdb;
 }
 
+.blog-grid-container-tags,
 .blog-grid-container-section-1,
 .blog-grid-container-section-2,
 .blog-grid-container-section-3,
@@ -338,6 +340,25 @@ img, img:hover {
         height:240px;
         width:100%;
         object-position:top;
+    }
+}
+
+// tags page styling
+#blog-grid-container-tags-full {
+    .blog-grid-item {
+        grid-column: auto / span 2;
+    }
+}
+
+#blog-grid-container-tags-2-col {
+    .blog-grid-item {
+        grid-column: auto / span 3;
+    }
+}
+
+#blog-grid-container-tags-1-col {
+    .blog-grid-item {
+        grid-column: auto / span 6;
     }
 }
 
@@ -869,7 +890,6 @@ body.active-side {
             }
         }
     }
-
 }
 @media (max-width: 1024px) {
     #menu {
@@ -1046,6 +1066,14 @@ body.active-side {
         margin: 0;
     }
 
+    // tags page styling
+    #blog-grid-container-tags-full {
+        .blog-grid-item {
+            grid-column: auto / span 3;
+        }
+    }
+
+    // main posts grid styling
     .blog-grid-container-section-1,
     .blog-grid-container-section-2,
     .blog-grid-container-section-3,
@@ -1221,6 +1249,26 @@ body.active-side {
     .sitetag, .newsletter {
         padding: 1.25rem;
     }
+
+
+    // tags page styling
+    #blog-grid-container-tags-full {
+        .blog-grid-item {
+            grid-column: auto / span 6;
+        }
+    }
+
+    #blog-grid-container-tags-2-col {
+        .blog-grid-item {
+            grid-column: auto / span 6;
+        }
+    }
+
+    #blog-grid-container-tags-1-col {
+        .blog-grid-item {
+            grid-column: auto / span 6;
+        }
+    }
 }
 
 @media (max-width: 480px) {
@@ -1247,3 +1295,4 @@ body.active-side {
         }
     }
 }
+
