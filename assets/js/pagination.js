@@ -7,34 +7,55 @@ function loadMorePosts() {
   clickCount++;
   const _this = this;
 
-  const pathname = window.location.pathname;
-  const $blogContainer = $(".blog-grid-container");
-  const $blogGridContainerSection5 = $(".blog-grid-container-section-5");
+  let pathname = window.location.pathname;
+  let $blogContainer = $(".blog-grid-container");
+  let $blogGridContainerSection5 = $(".blog-grid-container-section-5");
+  let $blogGridContainerTagsFull = $("#blog-grid-container-tags-full");
   $(this).addClass("loading");
 
   if (pathname.includes("/tags")) {
-    const nextTag = parseInt($blogContainer.attr("data-tag")) + 1;
-    const totalTags = parseInt($blogContainer.attr("data-totalTags"));
+    console.log("IN TAGS tagSection", $blogContainer)
+    let tagSectionTitle = $blogContainer.attr("data-tagTitle");
+    let tagSectionIndex = $blogContainer.attr("data-tag");
+    console.log("IN TAGS tagSection", tagSectionTitle)
+    console.log("IN TAGS tagSection I", tagSectionIndex)
+    let totalTags = parseInt($blogContainer.attr("data-totalTags"));
+    let totalTagPosts = parseInt($blogContainer.attr("data-totalTagPosts"));
+    let tagPostsToLoad = totalTagPosts
 
     $.get(pathname, data => {
-      const blogGridItems = $.parseHTML(data);
-      const $articles = $(blogGridItems).find(".blog-grid-item");
-      $blogContainer.attr("data-tag", nextTag).append($articles);
+      let blogGridItems = $.parseHTML(data);
+      let $tagPosts = $(blogGridItems).find(".blog-grid-item");
+      console.log("TAGS to cut", $tagPosts)
+    //   $blogContainer.attr("data-tag", nextTag).append($tagPosts);
 
-      if (totalTags == nextTag) {
+    if (clickCount == 1) {
+        $.get(`${pathname}#${tagSectionTitle}`, data => {
+          let blogGridItems = $.parseHTML(data);
+          // 6 is the offset from tags.html
+          $tagPosts = $(blogGridItems).find(".blog-grid-item").slice(6);
+          console.log("TAGS to cut", $tagPosts)
+          tagPostsToLoad -= 6
+          console.log("TAGS LEFT", tagPostsToLoad)
+          loadPosts($tagPosts, 6, $blogGridContainerTagsFull, tagSectionIndex, totalTagPosts, _this);
+        });
+    }
+
+      if (totalTags == tagPostsToLoad) {
         $(".loadMore").remove();
       }
 
       $(_this).removeClass("loading");
     });
   } else if (pathname.includes("/jekyll-theme-memoirs/")) {
-    const nextPage = parseInt($blogContainer.attr("data-page")) + 1;
-    const totalPages = parseInt($blogContainer.attr("data-totalPages"));
+    let nextPage = parseInt($blogContainer.attr("data-page")) + 1;
+    let totalPages = parseInt($blogContainer.attr("data-totalPages"));
 
     if (clickCount == 1) {
       $.get(`${pathname}page/${nextPage}`, data => {
-        const blogGridItems = $.parseHTML(data);
+        let blogGridItems = $.parseHTML(data);
 
+        // 21 is the offset from index.html
         $articles = $(blogGridItems).find(".blog-grid-item").slice(21);
 
         loadPosts($articles, 6, $blogGridContainerSection5, nextPage, totalPages, _this);
@@ -43,7 +64,7 @@ function loadMorePosts() {
       // if there are less than 5 remaining posts, append them to the next
       // page's post series
       $.get(`${pathname}page/${nextPage}`, data => {
-        const blogGridItems = $.parseHTML(data);
+        let blogGridItems = $.parseHTML(data);
 
         loadLastPosts(
           $blogGridContainerSection5,

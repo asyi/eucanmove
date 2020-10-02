@@ -28,16 +28,16 @@ pagination:
 
 {% for tag in site.tags %}
 
-    {% assign tags_list = tag[0] %}
-    <h1> tags {{tags_list}} index {{ forloop.index }} </h1>
+    {% assign tag_title = tag[0] %}
+    {% assign tag_posts = tag[1] %}
+    {% assign tag_posts_size = tag_posts | size %}
+    <h1> tags {{tag_title}} index {{ forloop.index }} </h1>
     <h4 class="mt-5 mb-neg-30" id="{{ tag[0] | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag[0] }}</span></h4>
-    <div class="blog-grid-container" data-tag="{{ forloop.index }}" data-totalTags="{{site.tags.size}}">
-        {% assign pages_list = tag[1] %}
-        {% assign pages_list_size = pages_list | size %}
+    <div class="blog-grid-container" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTags="{{site.tags.size}}" data-totalTagPosts="{{tag_posts_size}}">
 
-        {% if pages_list_size == 1 %}
+        {% if tag_posts_size == 1 %}
             <div class="blog-grid-container-tags" id="blog-grid-container-tags-1-col">
-            {% for post in pages_list %}
+            {% for post in tag_posts %}
                 {% if post.title != null %}
                     {% if group == null or group == post.group %}
                         {% include postbox.html %}
@@ -46,9 +46,9 @@ pagination:
             {% endfor %}
             </div>
 
-        {% elsif pages_list_size == 2 %}
+        {% elsif tag_posts_size == 2 %}
             <div class="blog-grid-container-tags" id="blog-grid-container-tags-2-col">
-            {% for post in pages_list limit: 12 %}
+            {% for post in tag_posts %}
                 {% if post.title != null %}
                     {% if group == null or group == post.group %}
                         {% include postbox.html %}
@@ -58,7 +58,7 @@ pagination:
             </div>
         {% else %}
             <div class="blog-grid-container-tags" id="blog-grid-container-tags-full">
-            {% for post in pages_list limit: 12 %}
+            {% for post in tag_posts limit: 6 %}
                 {% if post.title != null %}
                     {% if group == null or group == post.group %}
                         {% include postbox.html %}
@@ -68,14 +68,14 @@ pagination:
             </div>
         {% endif %}
 
-        {% assign pages_list = nil %}
+        {% assign tag_posts = nil %}
         {% assign group = nil %}
     </div>
     <!-- START of Pagination
     ================================================== -->
     <div class="bottompagination">
         <span class="navigation" role="navigation">
-            {% if pages_list_size > 12 %}
+            {% if tag_posts_size > 12 %}
                 <button class="loadMore">Load more posts</button>
             {% endif %}
         </span>
