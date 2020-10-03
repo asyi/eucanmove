@@ -19,29 +19,42 @@ function loadMorePosts() {
     let tagSectionIndex = $blogContainer.attr("data-tag");
     console.log("IN TAGS tagSection", tagSectionTitle)
     console.log("IN TAGS tagSection I", tagSectionIndex)
-    let totalTags = parseInt($blogContainer.attr("data-totalTags"));
-    let totalTagPosts = parseInt($blogContainer.attr("data-totalTagPosts"));
-    let tagPostsToLoad = totalTagPosts
+    // let totalTags = $blogContainer.attr("data-totalTags");
+    let totalTagsCount = parseInt($blogContainer.attr("data-totalTagsCount"));
+    console.log("TOTAL TAGS COUNT", totalTagsCount)
+    let totalTagPostsCount = parseInt($blogContainer.attr("data-totalTagPostsCount"));
+    console.log("TOTAL TAG POST COUNT", totalTagPostsCount)
+    let tagPostsToLoad = totalTagPostsCount
 
     $.get(pathname, data => {
-      let blogGridItems = $.parseHTML(data);
-      let $tagPosts = $(blogGridItems).find(".blog-grid-item");
-      console.log("TAGS to cut", $tagPosts)
-    //   $blogContainer.attr("data-tag", nextTag).append($tagPosts);
 
     if (clickCount == 1) {
         $.get(`${pathname}#${tagSectionTitle}`, data => {
           let blogGridItems = $.parseHTML(data);
           // 6 is the offset from tags.html
-          $tagPosts = $(blogGridItems).find(".blog-grid-item").slice(6);
+        //   $tagPosts = $(blogGridItems).find(".blog-grid-item").slice(6);
+          $tagPosts = $(blogGridItems).find("#blog-grid-container-tags-hidden").find(".blog-grid-item").slice(6);
+
           console.log("TAGS to cut", $tagPosts)
           tagPostsToLoad -= 6
           console.log("TAGS LEFT", tagPostsToLoad)
-          loadPosts($tagPosts, 6, $blogGridContainerTagsFull, tagSectionIndex, totalTagPosts, _this);
+          loadPosts($tagPosts, 6, $blogGridContainerTagsFull, tagSectionIndex, totalTagPostsCount, _this);
+        });
+    } else if (clickCount >= 2 && postCount <= 5) {
+        // if there are less than 5 remaining posts, append them to the next
+        // page's post series
+        $.get(`${pathname}#${tagSectionTitle}`, data => {
+          let blogGridItems = $.parseHTML(data);
+
+          loadLastPosts(
+            blogGridItems,
+            $blogGridContainerTagsFull.attr("data-page", nextPage - 1),
+            _this
+          );
         });
     }
 
-      if (totalTags == tagPostsToLoad) {
+      if (totalTagsCount == tagPostsToLoad) {
         $(".loadMore").remove();
       }
 
@@ -67,9 +80,8 @@ function loadMorePosts() {
         let blogGridItems = $.parseHTML(data);
 
         loadLastPosts(
-          $blogGridContainerSection5,
           blogGridItems,
-          nextPage,
+          $blogGridContainerSection5.attr("data-page", nextPage - 1),
           _this
         );
       });
@@ -128,9 +140,8 @@ function loadPosts(
 }
 
 function loadLastPosts(
-  blogContainerSection,
   blogGridItems,
-  nextPage,
+  attachmentSection,
   _this
 ) {
     var remainingArticles = $(blogGridItems).find(".blog-grid-item");
@@ -140,7 +151,7 @@ function loadLastPosts(
     // Get last remaining elements
     batch = remainingArticles.slice(Math.max(remainingArticles.length - postCount, 0));
 
-    blogContainerSection.attr("data-page", nextPage - 1).append(batch);
+    attachmentSection.append(batch);
 
     $(".loadMore").remove();
     $(_this).removeClass("loading");
