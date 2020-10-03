@@ -3,6 +3,11 @@ $(".loadMore").click(loadMorePosts);
 let clickCount = 0;
 let $articles = {};
 let postCount = 0;
+
+let tagPostsToLoad = 0
+
+let sliceCount = 6
+
 function loadMorePosts() {
   clickCount++;
   const _this = this;
@@ -14,51 +19,53 @@ function loadMorePosts() {
   $(this).addClass("loading");
 
   if (pathname.includes("/tags")) {
+    console.log("CLICK CONT", clickCount)
     console.log("IN TAGS tagSection", $blogContainer)
     let tagSectionTitle = $blogContainer.attr("data-tagTitle");
     let tagSectionIndex = $blogContainer.attr("data-tag");
-    console.log("IN TAGS tagSection", tagSectionTitle)
-    console.log("IN TAGS tagSection I", tagSectionIndex)
     // let totalTags = $blogContainer.attr("data-totalTags");
     let totalTagsCount = parseInt($blogContainer.attr("data-totalTagsCount"));
     console.log("TOTAL TAGS COUNT", totalTagsCount)
-    let totalTagPostsCount = parseInt($blogContainer.attr("data-totalTagPostsCount"));
+    var totalTagPostsCount = parseInt($blogContainer.attr("data-totalTagPostsCount"));
     console.log("TOTAL TAG POST COUNT", totalTagPostsCount)
-    let tagPostsToLoad = totalTagPostsCount
+
 
     $.get(pathname, data => {
 
-    if (clickCount == 1) {
-        $.get(`${pathname}#${tagSectionTitle}`, data => {
-          let blogGridItems = $.parseHTML(data);
-          // 6 is the offset from tags.html
-        //   $tagPosts = $(blogGridItems).find(".blog-grid-item").slice(6);
-          $tagPosts = $(blogGridItems).find("#blog-grid-container-tags-hidden").find(".blog-grid-item").slice(6);
-
-          console.log("TAGS to cut", $tagPosts)
-          tagPostsToLoad -= 6
-          console.log("TAGS LEFT", tagPostsToLoad)
-          loadPosts($tagPosts, 6, $blogGridContainerTagsFull, tagSectionIndex, totalTagPostsCount, _this);
-        });
-    } else if (clickCount >= 2 && postCount <= 5) {
+    if (clickCount >= 2 && postCount <= 5) {
         // if there are less than 5 remaining posts, append them to the next
         // page's post series
+        console.log("IN HEREEEEE - aaaaaaa with slice count", sliceCount)
+        console.log("original tag posts to load", tagPostsToLoad)
         $.get(`${pathname}#${tagSectionTitle}`, data => {
           let blogGridItems = $.parseHTML(data);
 
+
           loadLastPosts(
-            blogGridItems,
-            $blogGridContainerTagsFull.attr("data-page", nextPage - 1),
+            $(blogGridItems).find("#blog-grid-container-tags-hidden").find(".blog-grid-item"),
+            $blogGridContainerTagsFull,
             _this
           );
         });
+    } else {
+        $.get(`${pathname}#${tagSectionTitle}`, data => {
+            let blogGridItems = $.parseHTML(data);
+            $tagPosts = $(blogGridItems).find("#blog-grid-container-tags-hidden").find(".blog-grid-item").slice(sliceCount);
+
+            console.log("TAGS to cut", $tagPosts)
+            tagPostsToLoad = totalTagPostsCount - 6
+            sliceCount = sliceCount + 6
+            console.log("TAGS LEFT", tagPostsToLoad)
+            console.log("slice count 2222", sliceCount)
+            loadPosts($tagPosts, 6, $blogGridContainerTagsFull, tagSectionIndex, totalTagPostsCount, _this);
+          });
+
+        if (tagPostsToLoad === (sliceCount)) {
+            $(".loadMore").remove();
+        }
+
+        $(_this).removeClass("loading");
     }
-
-      if (totalTagsCount == tagPostsToLoad) {
-        $(".loadMore").remove();
-      }
-
-      $(_this).removeClass("loading");
     });
   } else if (pathname.includes("/jekyll-theme-memoirs/")) {
     let nextPage = parseInt($blogContainer.attr("data-page")) + 1;
@@ -80,7 +87,7 @@ function loadMorePosts() {
         let blogGridItems = $.parseHTML(data);
 
         loadLastPosts(
-          blogGridItems,
+          $(blogGridItems).find(".blog-grid-item"),
           $blogGridContainerSection5.attr("data-page", nextPage - 1),
           _this
         );
@@ -144,12 +151,13 @@ function loadLastPosts(
   attachmentSection,
   _this
 ) {
-    var remainingArticles = $(blogGridItems).find(".blog-grid-item");
 
     var batch;
 
     // Get last remaining elements
-    batch = remainingArticles.slice(Math.max(remainingArticles.length - postCount, 0));
+    batch = blogGridItems.slice(Math.max(blogGridItems.length - postCount, 0));
+
+    console.log("BATCH", batch)
 
     attachmentSection.append(batch);
 
