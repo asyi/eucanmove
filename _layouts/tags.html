@@ -33,17 +33,19 @@ pagination:
     {% assign tag_posts_size = tag_posts | size %}
     <h1> tags {{tag_title}} index {{ forloop.index }} </h1>
     <h4 class="mt-5 mb-neg-30" id="{{ tag[0] | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag[0] }}</span></h4>
-    <div class="blog-grid-container" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagsCount="{{site.tags.size}}" data-totalTagPostsCount="{{tag_posts_size}}">
+    <div class="blog-grid-container" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagPostsCount="{{tag_posts_size}}">
 
-        {% for post in tag_posts %}
-            <div class="blog-grid-container-tags" id="blog-grid-container-tags-hidden">
-                {% if post.title != null %}
-                    {% if group == null or group == post.group %}
-                        {% include postbox.html %}
+        {% if tag_posts_size > 2%}
+            {% for post in tag_posts offset: 6 %}
+                <div class="blog-grid-container-tags" id="blog-grid-container-tags-hidden">
+                    {% if post.title != null %}
+                        {% if group == null or group == post.group %}
+                            {% include postbox.html %}
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            </div>
-        {% endfor %}
+                </div>
+            {% endfor %}
+        {% endif%}
 
 
         {% if tag_posts_size == 1 %}
