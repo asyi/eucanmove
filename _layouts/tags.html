@@ -104,6 +104,7 @@ pagination:
                     if (elements[i].id != `${className}-${tag}`) {
                         console.log("element to remove", elements[i])
                         elements[i].parentNode.removeChild(elements[i]);
+                        i-=1
                     }
                 }
             }
