@@ -15,24 +15,31 @@ function loadMorePosts() {
     const _this = this;
 
     let pathname = window.location.pathname;
+    let hash = window.location.href
+    let tag = hash.split('/').slice(-1).toString()
+    console.log("WINDOW HASHTAG", tag)
     let $blogContainer = $(".blog-grid-container");
+    let $tagBlogContainer = $(`#blog-grid-container-${tag}`);
+    console.log("WINDOW HASH blog container", $tagBlogContainer)
     let $blogGridContainerSection5 = $(".blog-grid-container-section-5");
-    let $blogGridContainerTagsFull = $("#blog-grid-container-tags-full");
+    let $blogGridContainerTagsFull = $(`#blog-grid-container-tags-full-${tag}`);
     $(this).addClass("loading");
 
-    if (pathname.includes("/tags")) {
-        let tagSectionTitle = $blogContainer.attr("data-tagTitle");
-        let tagSectionIndex = $blogContainer.attr("data-tag");
-        var totalTagPostsCount = parseInt($blogContainer.attr("data-totalTagPostsCount"));
+    if (hash.includes("/tags")) {
+        let tagSectionTitle = $tagBlogContainer.attr("data-tagTitle");
+        console.log("Tag section title", tagSectionTitle)
+        let tagSectionIndex = $tagBlogContainer.attr("data-tag");
+        var totalTagPostsCount = parseInt($tagBlogContainer.attr("data-totalTagPostsCount"));
 
 
-        $.get(pathname, data => {
+        $.get(hash, data => {
 
             if (clickCount >= 2 && (remainder < 6)) {
                 // if there are less than 5 remaining posts, append them to the end
-                $.get(`${pathname}#${tagSectionTitle}`, data => {
+                $.get(`${hash}#${tagSectionTitle}`, data => {
+                    console.log("HEREEEE")
                     let blogGridItems = $.parseHTML(data);
-                    $tagPosts = $(blogGridItems).find("#blog-grid-container-tags-hidden").find(".blog-grid-item").slice(sliceCount);
+                    $tagPosts = $(blogGridItems).find(`#blog-grid-container-tags-hidden-${tagSectionTitle}`).find(".blog-grid-item").slice(sliceCount);
 
                     loadLastPosts(
                         $tagPosts,
@@ -41,13 +48,20 @@ function loadMorePosts() {
                     );
                 });
             } else {
-                $.get(`${pathname}#${tagSectionTitle}`, data => {
+                $.get(`${hash}#${tagSectionTitle}`, data => {
+                    console.log(`${hash}#${tagSectionTitle}`)   
                     let blogGridItems = $.parseHTML(data);
-                    $tagPosts = $(blogGridItems).find("#blog-grid-container-tags-hidden").find(".blog-grid-item").slice(sliceCount);
+                    $tagPosts = $(blogGridItems).find(`#blog-grid-container-tags-hidden-${tagSectionTitle}`).find(".blog-grid-item").slice(sliceCount);
+                    console.log("2-> TAG POSTS", $tagPosts)
+                    console.log("2-> Total tag post count", totalTagPostsCount)
                     tagPostsToLoad = totalTagPostsCount - 6
                     sliceCount = sliceCount + 6
                     remainder = tagPostsToLoad - sliceCount
                     loadPosts($tagPosts, 6, $blogGridContainerTagsFull, tagSectionIndex, totalTagPostsCount, _this);
+
+                    console.log("2-> Tag posts to load", tagPostsToLoad)
+                    console.log("2-> Slice count", sliceCount)
+                    console.log("2-> Remainder", remainder)
                 });
 
                 if (tagPostsToLoad === (sliceCount)) {

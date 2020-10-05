@@ -11,42 +11,16 @@ pagination:
   {% endfor %}
 {% endcapture %}
 {% assign sortedtags = tags | split:' ' | sort %}
-<h1> Soretd {{sortedtags}} </h1>
+
 
 {% for tag in sortedtags %}
-  <h4>#{{ tag }}</h4>
-  <ul>
-    {% for post in site.tags[tag] %}
-        <li>
-        <span>{{ post.date | date_to_string }}</span>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-    {% endfor %}
-  </ul>
-{% endfor %}
 
-
-{% for tag in site.tags %}
-
-    {% assign tag_title = tag[0] %}
-    {% assign tag_posts = tag[1] %}
+    {% assign tag_title = tag | downcase %}
+    {% assign tag_posts = site.tags[tag] %}
     {% assign tag_posts_size = tag_posts | size %}
-    <h1> tags {{tag_title}} index {{ forloop.index }} </h1>
-    <h4 class="mt-5 mb-neg-30" id="{{ tag[0] | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag[0] }}</span></h4>
-    <div class="blog-grid-container" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagPostsCount="{{tag_posts_size}}">
 
-        {% if tag_posts_size > 2%}
-            {% for post in tag_posts offset: 6 %}
-                <div class="blog-grid-container-tags" id="blog-grid-container-tags-hidden">
-                    {% if post.title != null %}
-                        {% if group == null or group == post.group %}
-                            {% include postbox.html %}
-                        {% endif %}
-                    {% endif %}
-                </div>
-            {% endfor %}
-        {% endif%}
-
+    <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag }}</span></h4>
+    <div class="blog-grid-container" id="blog-grid-container-{{tag_title}}" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagPostsCount="{{tag_posts_size}}">
 
         {% if tag_posts_size == 1 %}
             <div class="blog-grid-container-tags" id="blog-grid-container-tags-1-col">
@@ -70,7 +44,7 @@ pagination:
             {% endfor %}
             </div>
         {% else %}
-            <div class="blog-grid-container-tags" id="blog-grid-container-tags-full">
+            <div class="blog-grid-container-tags blog-grid-container-tags-full" id="blog-grid-container-tags-full-{{tag_title}}">
             {% for post in tag_posts limit: 6 %}
                 {% if post.title != null %}
                     {% if group == null or group == post.group %}
@@ -81,20 +55,62 @@ pagination:
             </div>
         {% endif %}
 
+        {% if tag_posts_size > 6%}
+            {% for post in tag_posts %}
+                <div class="blog-grid-container-tags blog-grid-container-tags-hidden" id="blog-grid-container-tags-hidden-{{tag_title}}">
+                    {% if post.title != null %}
+                        {% if group == null or group == post.group %}
+                            {% include postbox.html %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif%}
+
         {% assign tag_posts = nil %}
         {% assign group = nil %}
     </div>
+
     <!-- START of Pagination
     ================================================== -->
     <div class="bottompagination">
         <span class="navigation" role="navigation">
             {% if tag_posts_size > 6 %}
-                <button class="loadMore">Load more posts</button>
+                <button class="loadMore" id="loadMore-{{tag_title}}">Load more posts</button>
             {% endif %}
         </span>
     </div>
     <!-- END of Pagination
     ================================================== -->
 {% endfor %}
+
+<script>
+    function hasId(){
+
+        (function() {
+            console.log("/HELLO")
+            let pathname = window.location.pathname;
+            let hash = window.location.href
+            let tag = hash.split('/').slice(-1).toString()
+            console.log("WINDOW HASHTAG", tag)
+            removeElementsByClass("blog-grid-container")
+            removeElementsByClass("loadMore")
+            removeElementsByClass("tag-heading")
+
+            function removeElementsByClass(className){
+                var elements = document.getElementsByClassName(className);
+                for (let i = 0; i < elements.length; i++) {
+                    console.log("elements[i]", elements[i])
+                    if (elements[i].id != `${className}-${tag}`) {
+                        console.log("element to remove", elements[i])
+                        elements[i].parentNode.removeChild(elements[i]);
+                    }
+                }
+            }
+
+        })();
+    }
+    hasId();
+</script>
 
 <script src="{{site.baseurl}}/assets/js/pagination.js"></script>

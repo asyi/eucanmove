@@ -344,7 +344,7 @@ img, img:hover {
 }
 
 // tags page styling
-#blog-grid-container-tags-full {
+.blog-grid-container-tags-full {
     .blog-grid-item {
         grid-column: auto / span 2;
     }
@@ -362,7 +362,7 @@ img, img:hover {
     }
 }
 
-#blog-grid-container-tags-hidden {
+.blog-grid-container-tags-hidden {
     display: none;
 }
 
@@ -1071,7 +1071,7 @@ body.active-side {
     }
 
     // tags page styling
-    #blog-grid-container-tags-full {
+    .blog-grid-container-tags-full {
         .blog-grid-item {
             grid-column: auto / span 3;
         }
@@ -1256,7 +1256,7 @@ body.active-side {
 
 
     // tags page styling
-    #blog-grid-container-tags-full {
+    .blog-grid-container-tags-full {
         .blog-grid-item {
             grid-column: auto / span 6;
         }
