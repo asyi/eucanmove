@@ -2,21 +2,116 @@
 title: "Categories"
 layout: default
 permalink: "/categories.html"
+pagination:
+    enabled:true
 ---
+{% capture tags %}
+  {% for tag in site.categories %}
+    {{ tag[0] }}
+  {% endfor %}
+{% endcapture %}
+{% assign sortedtags = tags | split:' ' | sort %}
 
 
-{% for category in site.categories %}
-<h4 class="mt-5 mb-neg-30" id="{{ category[0] | replace: " ","-" }}"><span class="text-capitalize badge badge-primary text-small">{{ category[0] }}</span></h4>
-<div class="blog-grid-container">
-{% assign pages_list = category[1] %}
-{% for post in pages_list %}
-{% if post.title != null %}
-{% if group == null or group == post.group %}
-{% include postbox.html %}
-{% endif %}
-{% endif %}
+{% for tag in sortedtags %}
+
+    {% assign tag_title = tag | downcase %}
+    {% assign tag_posts = site.categories[tag] %}
+    {% assign tag_posts_size = tag_posts | size %}
+
+    <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag }}</span></h4>
+    <div class="blog-grid-container" id="blog-grid-container-{{tag_title}}" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagPostsCount="{{tag_posts_size}}">
+
+        {% if tag_posts_size == 1 %}
+            <div class="blog-grid-container-tags" id="blog-grid-container-tags-1-col">
+            {% for post in tag_posts %}
+                {% if post.title != null %}
+                    {% if group == null or group == post.group %}
+                        {% include postbox.html %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+
+        {% elsif tag_posts_size == 2 %}
+            <div class="blog-grid-container-tags" id="blog-grid-container-tags-2-col">
+            {% for post in tag_posts %}
+                {% if post.title != null %}
+                    {% if group == null or group == post.group %}
+                        {% include postbox.html %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="blog-grid-container-tags blog-grid-container-tags-full" id="blog-grid-container-tags-full-{{tag_title}}">
+            {% for post in tag_posts limit: 6 %}
+                {% if post.title != null %}
+                    {% if group == null or group == post.group %}
+                        {% include postbox.html %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if tag_posts_size > 6%}
+            {% for post in tag_posts %}
+                <div class="blog-grid-container-tags blog-grid-container-tags-hidden" id="blog-grid-container-tags-hidden-{{tag_title}}">
+                    {% if post.title != null %}
+                        {% if group == null or group == post.group %}
+                            {% include postbox.html %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif%}
+
+        {% assign tag_posts = nil %}
+        {% assign group = nil %}
+    </div>
+
+    <!-- START of Pagination
+    ================================================== -->
+    <div class="bottompagination">
+        <span class="navigation" role="navigation">
+            {% if tag_posts_size > 6 %}
+                <button class="loadMore" id="loadMore-{{tag_title}}">Load more posts</button>
+            {% endif %}
+        </span>
+    </div>
+    <!-- END of Pagination
+    ================================================== -->
 {% endfor %}
-{% assign pages_list = nil %}
-{% assign group = nil %}
-</div>
-{% endfor %}
+
+<script>
+    function hasId(){
+
+        (function() {
+            console.log("/HELLO")
+            let pathname = window.location.pathname;
+            let hash = window.location.href
+            let tag = hash.split('/').slice(-1).toString()
+            console.log("WINDOW HASHTAG", tag)
+            removeElementsByClass("blog-grid-container")
+            removeElementsByClass("loadMore")
+            removeElementsByClass("tag-heading")
+
+            function removeElementsByClass(className){
+                var elements = document.getElementsByClassName(className);
+                for (let i = 0; i < elements.length; i++) {
+                    console.log("elements[i]", elements[i])
+                    if (elements[i].id != `${className}-${tag}`) {
+                        console.log("element to remove", elements[i])
+                        elements[i].parentNode.removeChild(elements[i]);
+                        i-=1
+                    }
+                }
+            }
+
+        })();
+    }
+    hasId();
+</script>
+
+<script src="{{site.baseurl}}/assets/js/pagination.js"></script>

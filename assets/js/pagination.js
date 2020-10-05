@@ -25,7 +25,7 @@ function loadMorePosts() {
     let $blogGridContainerTagsFull = $(`#blog-grid-container-tags-full-${tag}`);
     $(this).addClass("loading");
 
-    if (hash.includes("/tags")) {
+    if (hash.includes("/tags") || hash.includes("/categories")) {
         let tagSectionTitle = $tagBlogContainer.attr("data-tagTitle");
         console.log("Tag section title", tagSectionTitle)
         let tagSectionIndex = $tagBlogContainer.attr("data-tag");
@@ -49,7 +49,7 @@ function loadMorePosts() {
                 });
             } else {
                 $.get(`${hash}#${tagSectionTitle}`, data => {
-                    console.log(`${hash}#${tagSectionTitle}`)   
+                    console.log(`${hash}#${tagSectionTitle}`)
                     let blogGridItems = $.parseHTML(data);
                     $tagPosts = $(blogGridItems).find(`#blog-grid-container-tags-hidden-${tagSectionTitle}`).find(".blog-grid-item").slice(sliceCount);
                     console.log("2-> TAG POSTS", $tagPosts)
