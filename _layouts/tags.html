@@ -88,11 +88,9 @@ pagination:
     function hasId(){
 
         (function() {
-            console.log("/HELLO")
             let pathname = window.location.pathname;
             let hash = window.location.href
             let tag = hash.split('/').slice(-1).toString()
-            console.log("WINDOW HASHTAG", tag)
             removeElementsByClass("blog-grid-container")
             removeElementsByClass("loadMore")
             removeElementsByClass("tag-heading")
@@ -100,9 +98,7 @@ pagination:
             function removeElementsByClass(className){
                 var elements = document.getElementsByClassName(className);
                 for (let i = 0; i < elements.length; i++) {
-                    console.log("elements[i]", elements[i])
                     if (elements[i].id != `${className}-${tag}`) {
-                        console.log("element to remove", elements[i])
                         elements[i].parentNode.removeChild(elements[i]);
                         i-=1
                     }
