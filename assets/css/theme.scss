@@ -1054,12 +1054,21 @@ body.active-side {
 @media (max-width: 768px) {
     .container {
         display: grid;
-        grid-column: 1frr;
+        grid-column: 1fr;
         padding: 0;
         margin: 0;
         margin-top: 30px;
-        width: 100%;
-        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 85%;
+        max-width: 85%;
+    }
+    .share {
+        left: 5px;
+    }
+    .nav-icon {
+        right: 0;
+        margin-right: 38px;
     }
     .topbar {
         margin-bottom: 0;
@@ -1191,8 +1200,6 @@ body.active-side {
         column-gap: 30px;
         row-gap: 30px;
         margin-top: 1.5rem;
-        margin-left: 60px;
-        margin-right: 60px;
 
         .blog-grid-item {
             grid-column: auto / span 6;
@@ -1201,6 +1208,28 @@ body.active-side {
 }
 
 @media (max-width: 600px) {
+    .container {
+        padding: 0;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width:90%;
+        max-width:90%;
+    }
+    .topbar {
+        margin-bottom: 0;
+    }
+    .blog-grid-container {
+        row-gap: 0;
+        column-gap: 0;
+        margin: 0;
+    }
+    .nav-icon {
+        right: 0;
+        margin-right: 33px;
+    }
+
+
     .share, .wrap-search {
         position:relative;
     }
@@ -1276,6 +1305,19 @@ body.active-side {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width:87%;
+        max-width:87%;
+    }
+    .nav-icon {
+        right: 0;
+    }
+
+
     .newsletter {
         .mc-field-group input[type="email"] {
             min-width:170px;
