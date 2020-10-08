@@ -10,7 +10,7 @@ pagination:
 <!-- Posts Index
 ================================================== -->
 <div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}" data-postsPerPage="{{paginator.per_page}}">
-    {% assign totalPosts = site.posts | size %}
+    {% assign filtered_language_posts = site.posts | where:"lang", "en" %}
 
     <div class="blog-grid-container-section-1">
         {% include trending-posts.html %}
