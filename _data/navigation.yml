@@ -14,11 +14,25 @@ t:
         link: /about
       - name: Contact
         link: /contact
+    navitems:
+      - name: Home
+        link: /
+      - name: About
+        link: /about
+      - name: Contact
+        link: /contact
   - language: fr
     items:
       - name: Acceuil
         link: /acceuil
       - name: " À propos"
+        link: /a-propos
+      - name: Contact
+        link: /contactez-nous
+    navitems:
+      - name: Acceuil
+        link: /acceuil
+      - name: À propos
         link: /a-propos
       - name: Contact
         link: /contactez-nous
