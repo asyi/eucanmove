@@ -20,5 +20,5 @@ t:
         link: /acceuil
       - name: " À propos"
         link: /a-propos
-      - name: Contactez-nous
+      - name: Contact
         link: /contactez-nous
