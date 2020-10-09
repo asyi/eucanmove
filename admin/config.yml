@@ -136,9 +136,14 @@ collections:
         name: "navigation"
         file: "_data/navigation.yml"
         fields:
-          - label: "Navigation Items"
-            name: "items"
+          - label: "Language"
+            name: "t"
             widget: "list"
             fields:
-              - {label: Name, name: name, widget: string}
-              - {label: Link, name: link, widget: string}
+              - {label: Language, name: language, widget: string}
+              - label: "Navigation Items"
+                name: "navitems"
+                widget: "list"
+                fields:
+                  - {label: Name, name: name, widget: string}
+                  - {label: Link, name: link, widget: string}
