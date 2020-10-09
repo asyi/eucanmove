@@ -36,3 +36,7 @@ t:
         link: /a-propos
       - name: Contact
         link: /contactez-nous
+  - language: es
+    navitems:
+      - name: Casa
+        link: /casa
