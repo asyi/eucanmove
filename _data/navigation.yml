@@ -5,3 +5,20 @@ items:
     link: /about.html
   - name: Contact
     link: /contact.html
+t:
+  - language: en
+    items:
+      - name: Home
+        link: /
+      - name: About
+        link: /about
+      - name: Contact
+        link: /contact
+  - language: fr
+    items:
+      - name: Acceuil
+        link: /acceuil
+      - name: " À propos"
+        link: /a-propos
+      - name: Contact
+        link: /contactez-nous
