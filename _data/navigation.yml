@@ -5,38 +5,4 @@ items:
     link: /about.html
   - name: Contact
     link: /contact.html
-t:
-  - language: en
-    items:
-      - name: Home
-        link: /
-      - name: About
-        link: /about
-      - name: Contact
-        link: /contact
-    navitems:
-      - name: Home
-        link: /
-      - name: About
-        link: /about
-      - name: Contact
-        link: /contact
-  - language: fr
-    items:
-      - name: Acceuil
-        link: /acceuil
-      - name: " À propos"
-        link: /a-propos
-      - name: Contact
-        link: /contactez-nous
-    navitems:
-      - name: Acceuil
-        link: /acceuil
-      - name: À propos
-        link: /a-propos
-      - name: Contact
-        link: /contactez-nous
-  - language: es
-    navitems:
-      - name: Casa
-        link: /casa
+t: []
