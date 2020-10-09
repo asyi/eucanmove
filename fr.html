@@ -14,32 +14,32 @@ lang: fr
     {% assign filtered_language_posts = site.posts | where:"lang", page.lang %}
     <div class="blog-grid-container-section-1">
         {% include trending-posts.html %}
-        {% for post in site.posts limit: 4 %}
+        {% for post in filtered_language_posts limit: 4 %}
             {% include postbox.html %}
         {% endfor %}
     </div>
     <div class="blog-grid-container-section-2">
-        {% for post in site.posts limit: 5 offset: 4 %}
+        {% for post in filtered_language_posts limit: 5 offset: 4 %}
             {% include postbox.html %}
         {% endfor %}
     </div>
     <div class="blog-grid-container-section-3">
-        {% for post in site.posts limit: 6 offset: 9 %}
+        {% for post in filtered_language_posts limit: 6 offset: 9 %}
             {% include postbox.html %}
         {% endfor %}
     </div>
     <div class="blog-grid-container-section-4">
-        {% for post in site.posts limit: 5 offset: 15 %}
+        {% for post in filtered_language_posts limit: 5 offset: 15 %}
             {% include postbox.html %}
         {% endfor %}
     </div>
     <div class="blog-grid-container-section-5">
-        {% for post in site.posts limit: 1 offset: 20 %}
+        {% for post in filtered_language_posts limit: 1 offset: 20 %}
             {% include postbox.html %}
         {% endfor %}
     </div>
     <div id="blog-grid-container-section-6" class="blog-grid-container-section-6-hidden">
-        {% for post in site.posts offset: 21 %}
+        {% for post in filtered_language_posts offset: 21 %}
             {% include postbox.html %}
         {% endfor %}
     </div>
