@@ -54,13 +54,16 @@ ga('send', 'pageview');
         </div>
         <nav id="menu">
             <ul>
-                {% for item in site.data.navigation.t[page.lang]%}
-                    <h1> {{item}} </h1>
-                    <li>
-                        <a href="{{ site.baseurl }}{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
-                        {{ item.name }}
-                        </a>
-                    </li>
+                {% for language in site.data.navigation.t%}
+                    {% if page.lang == language["language"] %}
+                        {% for item in language["navitems"] %}
+                            <li>
+                                <a href="{{ site.baseurl }}{{ item['link'] }}" {% if page.url == item['link'] %}style="color: red;"{% endif %}>
+                                {{ item['name'] }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
                 {% include search-lunr-side.html %}
             </ul>
