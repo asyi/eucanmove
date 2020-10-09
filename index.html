@@ -12,6 +12,7 @@ lang: en
 ================================================== -->
 <div class="blog-grid-container" data-page="{{ paginator.page }}" data-totalPages="{{paginator.total_pages}}" data-postsPerPage="{{paginator.per_page}}">
     {% assign filtered_language_posts = site.posts | where:"lang", page.lang %}
+
     <div class="blog-grid-container-section-1">
         {% include trending-posts.html %}
         {% for post in filtered_language_posts limit: 4 %}

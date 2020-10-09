@@ -65,8 +65,15 @@ ga('send', 'pageview');
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
+                <li>
+                    <a href="{{ site.baseurl }}/" class="en">En</a>
+                </li>
+                <li>
+                    <a href="{{ site.baseurl }}/fr/" class="fr">Fr</a>
+                </li>
                 {% include search-lunr-side.html %}
             </ul>
+
         </nav>
     </div>
     <!-- Begin Search Box
