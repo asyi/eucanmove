@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={{page.lang || "en"}}>
+<html lang={{page.lang }}>
 <head>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <meta charset="utf-8">
@@ -65,12 +65,37 @@ ga('send', 'pageview');
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
-                <li>
-                    <a href="{{ site.baseurl }}/" class="en">En</a>
-                </li>
-                <li>
-                    <a href="{{ site.baseurl }}/fr/" class="fr">Fr</a>
-                </li>
+
+                <!-- Begin Language Switcher
+                ================================================== -->
+
+                {% if page.url == "/index.html" %}
+                    <li>
+                        <a href="{{ site.baseurl }}/" class="en"> En</a>
+                    </li>
+                    <li>
+                        <a href="{{ site.baseurl }}/fr/">Fr</a>
+                    </li>
+                {% elsif page.url == "/fr/index.html" %}
+                    <li>
+                        <a href="{{ site.baseurl }}/">En</a>
+                    </li>
+                    <li>
+                        <a href="{{ site.baseurl }}/fr/" class="fr">Fr</a>
+                    </li>
+                {% else %}
+
+                    {% assign posts = site.posts | where: "uid", page.uid | sort: 'lang' %}
+                    {% for post in posts %}
+                    <li>
+                        <a href="{{ site.baseurl }}/{{ post.url }}" class="{{post.lang}}">{{post.lang}}</a>
+                    </li>
+                    {% endfor %}
+
+                {% endif %}
+                <!-- End Search Box
+                ================================================== -->
+
                 {% include search-lunr-side.html %}
             </ul>
 
