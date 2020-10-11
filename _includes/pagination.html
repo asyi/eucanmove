@@ -9,8 +9,10 @@
 {% assign postCount = site.posts | size %}
 {% assign postsCovered = site.paginate | plus:offset %}
 
-{% if postsCovered < postCount %}
+{% if postsCovered < postCount and page.lang == "en" %}
   <button class="loadMore">Load more posts</button>
+{% elsif postsCovered < postCount and page.lang == "fr" %}
+  <button class="loadMore">Voir plus de postes</button>
 {% endif %}
 
 <script src="{{site.baseurl}}/assets/js/pagination.js"></script>

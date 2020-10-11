@@ -73,8 +73,10 @@ pagination:
     ================================================== -->
     <div class="bottompagination">
         <span class="navigation" role="navigation">
-            {% if tag_posts_size > 6 %}
+            {% if tag_posts_size > 6 and page.lang == "en" %}
                 <button class="loadMore" id="loadMore-{{tag_title}}">Load more posts</button>
+            {% elsif tag_posts_size > 6 and page.lang == "fr" %}
+                <button class="loadMore" id="loadMore-{{tag_title}}">Voir plus de postes</button>
             {% endif %}
         </span>
     </div>
