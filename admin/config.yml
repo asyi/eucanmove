@@ -53,6 +53,16 @@ collections:
           value_field: 'tag',
           multiple: true
         }
+      - {
+          label: 'UID',
+          name: 'uids',
+          widget: 'relation',
+          collection: 'uids',
+          display_fields: [uid],
+          search_fields: [uid],
+          value_field: 'uid',
+          multiple: true
+        }
       - { image: 'Image', name: 'image', widget: 'image', required: true }
       - { rating: 'Rating', name: 'rating', widget: 'number', required: false }
   - name: 'authors'
@@ -73,6 +83,15 @@ collections:
       - { label: 'Website', name: 'web', widget: 'string', required: false }
       - { label: 'Twitter', name: 'twitter', widget: 'string', required: false }
       - { label: 'Instagram', name: 'instagram', widget: 'string', required: false }
+  - name: 'uids'
+    label: 'UID'
+    folder: _uids/'
+    create: true
+    slug: '{{fields.uid}}'
+    editor:
+      preview: false
+    fields:
+      - { label: UID, name: 'uid', widget: 'string' , required: false}
   - name: 'tags'
     label: 'Tags'
     folder: '_tags/'

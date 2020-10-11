@@ -1,6 +1,7 @@
 ---
 layout: post
 lang: fr
+uid: nnn
 title: Un petit test
 date: 2020-10-11T03:11:32.576Z
 author: althea
