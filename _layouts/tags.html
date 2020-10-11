@@ -19,7 +19,7 @@ lang: en
     {% assign tag_title = tag | downcase %}
     {% assign tag_posts = site.tags[tag] %}
     {% assign tag_posts_size = tag_posts | size %}
-    <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag }}</span></h4>
+    <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag | remove: "fr-" }}</span></h4>
     <div class="blog-grid-container" id="blog-grid-container-{{tag_title}}" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagPostsCount="{{tag_posts_size}}">
 
         {% if tag_posts_size == 1 %}
