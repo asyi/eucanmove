@@ -5,11 +5,11 @@ title: Un autre test
 date: 2020-10-11T03:40:28.628Z
 author: john
 categories:
-  - Maison
+  - fr-Maison
 tags:
-  - Europe-fr
+  - fr-Europe
 uid:
-  - lll
+  - aaa
 image: /assets/uploads/12.jpg
 ---
 tae
