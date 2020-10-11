@@ -8,6 +8,8 @@ categories:
   - Maison
 tags:
   - Europe-fr
+uids:
+  - ggg
 image: /assets/uploads/15.jpg
 ---
 test petit test
