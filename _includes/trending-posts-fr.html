@@ -1,25 +1,16 @@
 <!-- begin trending -->
 {% for trend in site.trending %}
-    {% if page.lang == "en" %}
-        {% assign trending = trend.trending%}
-    {% elsif page.lang == "fr"%}
-        {% assign trending = trend.trending-fr%}
-    {% endif %}
     <div class="blog-grid-trending">
         <div class="blog-grid-trending-heading">
             <div class="blog-grid-trending-icon">
             </div>
             <div class="blog-grid-trending-posts-title">
                 <h4 class="blog-grid-trending-posts-title-text">
-                    {% assign trendSize = trending | size %}
-                    {% if trendSize == 1 and page.lang == "en"%}
-                        {{ trendSize }} Trending post this week
-                    {% elsif trendSize == 1 and page.lang == "fr"%}
-                        {{ trendSize }} Poste tendance cette semaine
-                    {% elsif trendSize > 1 and page.lang == "en"%}
-                        {{ trendSize }} Trending posts this week
+                    {% assign trendSize = trend.trending-fr | size %}
+                    {% if trendSize == 1 %}
+                        {{ trendSize }} poste tendance
                     {% else %}
-                        {{ trendSize }} Postes tendances cette semaine
+                        {{ trendSize }} postes tendances
                     {% endif%}
                 </h4>
             </div>
@@ -27,7 +18,7 @@
 
 
         <div class="blog-grid-trending-post-list">
-            {% for trendTitle in trending %}
+            {% for trendTitle in trend.trending-fr %}
             <div class="blog-grid-trending-post-list-item">
                 <a class="blog-grid-trending-post-link" href="{{site.baseurl}}/{{ trendTitle | replace: ' ', '-'}}/">
                     {{ trendTitle }}

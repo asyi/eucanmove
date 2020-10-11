@@ -217,7 +217,7 @@ ga('send', 'pageview');
                     new_list_item.setAttribute("id", `lang-switcher-item-${fr_nav_items[i]}.name`);
                     new_list_item.setAttribute("class", "lang-switcher-item");
                     new_list_item.innerHTML = `<a href=${fr_nav_items[i].link}>${fr_nav_items[i].name}</a>`;
-href="{{ site.baseurl }}/fr"
+href="{{ site.baseurl }}/fr/"
                     item_to_replace.parentNode.replaceChild(new_list_item, lang_switcher_items[i])
                 }
                 // Add language switcher
@@ -230,7 +230,7 @@ href="{{ site.baseurl }}/fr"
 
             // if we're on an english tag/category page
             } else if ({{page.lang | jsonify }} == "en" && hash.includes("/tags/")) {
-                let french_link = {{ site.baseurl | jsonify }} + "/fr"
+                let french_link = {{ site.baseurl | jsonify }} + "/fr/"
                 let new_lang_switch_item = document.createElement("li");
                 new_lang_switch_item.appendChild(document.createTextNode("fr"));
                 new_lang_switch_item.setAttribute("id", "lang-switcher-item-tag-fr");
