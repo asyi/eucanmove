@@ -4,6 +4,8 @@ layout: default
 permalink: "/categories.html"
 pagination:
     enabled:true
+uid: jjj
+lang: en
 ---
 {% capture tags %}
   {% for tag in site.categories %}
@@ -16,7 +18,7 @@ pagination:
 {% for tag in sortedtags %}
 
     {% assign tag_title = tag | downcase %}
-    {% assign tag_posts = site.categories[tag] %}
+    {% assign tag_posts = site.categories[tag] | where:"lang", layout.lang %}
     {% assign tag_posts_size = tag_posts | size %}
 
     <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: " ","-" }}"><span class="text-capitalize text-small badge badge-primary">{{ tag }}</span></h4>

@@ -86,10 +86,21 @@ ga('send', 'pageview');
                 {% else %}
 
                     {% assign posts = site.posts | where: "uid", page.uid | sort: 'lang' %}
+                    {% assign langCount = posts | size%}
                     {% for post in posts %}
-                    <li>
-                        <a href="{{ site.baseurl }}/{{ post.url }}" class="{{post.lang}}">{{post.lang}}</a>
-                    </li>
+                        {% if langCount == 1 and post.lang == "en" %}
+                            <li>
+                                <a href="{{ site.baseurl }}/fr">fr</a>
+                            </li>
+                        {% elsif langCount == 1 and post.lang == "fr" %}
+                            <li>
+                                <a href="{{ site.baseurl }}/">en</a>
+                            </li>
+                        {% else %}
+                                <li>
+                                    <a href="{{ site.baseurl }}{{ post.url }}" class="{{post.lang}}">{{post.lang}}</a>
+                                </li>
+                        {% endif %}
                     {% endfor %}
 
                 {% endif %}
