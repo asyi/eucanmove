@@ -55,7 +55,7 @@ collections:
         }
       - {
           label: 'UID',
-          name: 'uids',
+          name: 'uid',
           widget: 'relation',
           collection: 'uids',
           display_fields: [uid],
@@ -83,7 +83,7 @@ collections:
       - { label: 'Website', name: 'web', widget: 'string', required: false }
       - { label: 'Twitter', name: 'twitter', widget: 'string', required: false }
       - { label: 'Instagram', name: 'instagram', widget: 'string', required: false }
-  - name: 'uids'
+  - name: 'uid'
     label: 'UID'
     folder: _uids/'
     create: true
