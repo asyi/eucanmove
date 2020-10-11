@@ -15,8 +15,8 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
-      - { label: 'Language', name: 'lang', widget: 'string', required: true }
+      - { label: 'Layout', name: 'layout', widget: 'string', default: 'post, post-fr' }
+      - { label: 'Language', name: 'lang', widget: 'string', default: 'en, fr' }
       # date and title fields used by collections.slug
       # However, Netifly CMS requires a frontmatter date field... so Jekyll wont notices date/title changes made in Netifly CMS
       # Jekyll relies on filename to determine post publish date
@@ -61,7 +61,8 @@ collections:
           display_fields: [uid],
           search_fields: [uid],
           value_field: 'uid',
-          multiple: true
+          multiple: true,
+          required: false
         }
       - { image: 'Image', name: 'image', widget: 'image', required: true }
       - { rating: 'Rating', name: 'rating', widget: 'number', required: false }

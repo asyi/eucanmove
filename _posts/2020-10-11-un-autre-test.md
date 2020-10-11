@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post-fr
 lang: fr
 title: Un autre test
 date: 2020-10-11T03:40:28.628Z

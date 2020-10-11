@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post-fr
 lang: fr
 title: Un petit test
 date: 2020-10-11T03:39:57.817Z
