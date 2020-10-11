@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang={{page.lang }}>
 <head>
@@ -52,12 +54,12 @@ ga('send', 'pageview');
         <div class="nav-icon">
             <div class="hamburger-bar"></div>
         </div>
-        <nav id="menu">
-            <ul>
+        <nav id="menu"> 
+            <ul id="lang-switcher-list">
                 {% for language in site.data.navigation.t%}
                     {% if page.lang == language["language"] %}
                         {% for item in language["navitems"] %}
-                            <li>
+                            <li class="lang-switcher-item" id="lang-switcher-item-{{item['name'] | downcase }}">
                                 <a href="{{ site.baseurl }}{{ item['link'] }}" {% if page.url == item['link'] %}style="color: red;"{% endif %}>
                                 {{ item['name'] }}
                                 </a>
@@ -68,19 +70,18 @@ ga('send', 'pageview');
 
                 <!-- Begin Language Switcher
                 ================================================== -->
-
                 {% if page.url == "/index.html" %}
-                    <li>
+                    <li class="lang-switcher-item" id="lang-switcher-item-en-index">
                         <a href="{{ site.baseurl }}/" class="en"> En</a>
                     </li>
-                    <li>
+                    <li class="lang-switcher-item" id="lang-switcher-item-fr-index">
                         <a href="{{ site.baseurl }}/fr/">Fr</a>
                     </li>
                 {% elsif page.url == "/fr/index.html" %}
-                    <li>
+                    <li class="lang-switcher-item" id="lang-switcher-item-en-index-fr">
                         <a href="{{ site.baseurl }}/">En</a>
                     </li>
-                    <li>
+                    <li class="lang-switcher-item" id="lang-switcher-item-fr-index-fr">
                         <a href="{{ site.baseurl }}/fr/" class="fr">Fr</a>
                     </li>
                 {% else %}
@@ -88,22 +89,22 @@ ga('send', 'pageview');
                     {% assign langCount = posts | size %}
                     {% for post in posts %}
                         {% if langCount == 1 and post.lang == "en" %}
-                            <li>
+                            <li class="lang-switcher-item" id="lang-switcher-item-fr-static">
                                 <a href="{{ site.baseurl }}/fr">fr</a>
                             </li>
                         {% elsif langCount == 1 and post.lang == "fr" %}
-                            <li>
+                            <li class="lang-switcher-item" id="lang-switcher-item-en-static">
                                 <a href="{{ site.baseurl }}/">en</a>
                             </li>
                         {% else %}
-                                <li>
+                                <li class="lang-switcher-item" id="lang-switcher-item-dynamic">
                                     <a href="{{ site.baseurl }}{{ post.url }}" class="{{post.lang}}">{{post.lang}}</a>
                                 </li>
                         {% endif %}
                     {% endfor %}
 
                 {% endif %}
-                <!-- End Search Box
+                <!-- End Language Switcher
                 ================================================== -->
 
                 {% include search-lunr-side.html %}
@@ -191,6 +192,57 @@ ga('send', 'pageview');
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
 {% endif %}
 
+<script>
+    (function() {
+        let pathname = window.location.pathname;
+        let hash = window.location.href
+        let tag = hash.split('/').slice(-1).toString()
+        addElementsByClass("lang-switcher-list")
+
+        function addElementsByClass(className){
+            let lang_switcher_items = document.getElementsByClassName("lang-switcher-item")
+            let lang_switcher_items_count = lang_switcher_items.length
+            let fr_nav_items = {{ site.data.navigation.t | jsonify }}[1].navitems
+            let ul = document.getElementById("lang-switcher-list");
+
+            // if we're on a french tag/category page
+            if ({{page.lang | jsonify }} == "en" && tag.includes("fr-")) {
+                // Replace english nav items with french versions
+                let english_link = {{ site.baseurl | jsonify }} + "/"
+                for (let i = 0; i < lang_switcher_items.length ; i++) {
+                    let item_to_replace = lang_switcher_items[i];
+
+                    let new_list_item = document.createElement("li");
+                    new_list_item.appendChild(document.createTextNode(fr_nav_items[i].name));
+                    new_list_item.setAttribute("id", `lang-switcher-item-${fr_nav_items[i]}.name`);
+                    new_list_item.setAttribute("class", "lang-switcher-item");
+                    new_list_item.innerHTML = `<a href=${fr_nav_items[i].link}>${fr_nav_items[i].name}</a>`;
+href="{{ site.baseurl }}/fr"
+                    item_to_replace.parentNode.replaceChild(new_list_item, lang_switcher_items[i])
+                }
+                // Add language switcher
+                let new_lang_switch_item = document.createElement("li");
+                new_lang_switch_item.appendChild(document.createTextNode("en"));
+                new_lang_switch_item.setAttribute("id", "lang-switcher-item-tag-en");
+                new_lang_switch_item.setAttribute("class", "lang-switcher-item");
+                new_lang_switch_item.innerHTML = `<a href=${english_link}>en</a>`;
+                ul.insertBefore(new_lang_switch_item, ul.children[lang_switcher_items_count]);
+
+            // if we're on an english tag/category page
+            } else if ({{page.lang | jsonify }} == "en" && hash.includes("/tags/")) {
+                let french_link = {{ site.baseurl | jsonify }} + "/fr"
+                let new_lang_switch_item = document.createElement("li");
+                new_lang_switch_item.appendChild(document.createTextNode("fr"));
+                new_lang_switch_item.setAttribute("id", "lang-switcher-item-tag-fr");
+                new_lang_switch_item.setAttribute("class", "lang-switcher-item");
+                new_lang_switch_item.innerHTML = `<a href=${french_link}>fr</a>`;
+                ul.insertBefore(new_lang_switch_item, ul.children[lang_switcher_items_count]);
+            }
+        }
+
+    })();
+</script>
+
 
 <script>
   if (window.netlifyIdentity) {
@@ -203,5 +255,6 @@ ga('send', 'pageview');
     });
   }
 </script>
+
 </body>
 </html>

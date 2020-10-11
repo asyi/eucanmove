@@ -3,9 +3,7 @@ title: "Categories"
 layout: default
 permalink: "/categories.html"
 pagination:
-    enabled:true
-uid: jjj
-lang: en
+    enabled: true
 ---
 {% capture tags %}
   {% for tag in site.categories %}
@@ -87,7 +85,6 @@ lang: en
 {% endfor %}
 
 <script>
-    function hasId(){
 
         (function() {
             let pathname = window.location.pathname;
@@ -108,8 +105,6 @@ lang: en
             }
 
         })();
-    }
-    hasId();
 </script>
 
 <script src="{{site.baseurl}}/assets/js/pagination.js"></script>

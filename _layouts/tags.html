@@ -4,8 +4,6 @@ layout: default
 permalink: "/tags"
 pagination:
     enabled: true
-uid: ddd
-lang: en
 ---
 {% capture tags %}
   {% for tag in site.tags %}
@@ -85,8 +83,6 @@ lang: en
 {% endfor %}
 
 <script>
-    function hasId(){
-
         (function() {
             let pathname = window.location.pathname;
             let hash = window.location.href
@@ -106,8 +102,6 @@ lang: en
             }
 
         })();
-    }
-    hasId();
 </script>
 
 <script src="{{site.baseurl}}/assets/js/pagination.js"></script>

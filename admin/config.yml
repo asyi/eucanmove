@@ -104,6 +104,17 @@ collections:
       preview: false
     fields:
       - { label: 'Tag', name: 'tag', widget: 'string' , required: false}
+      - {
+          label: 'UID',
+          name: 'uid',
+          widget: 'relation',
+          collection: 'uid',
+          display_fields: [uid],
+          search_fields: [uid],
+          value_field: 'uid',
+          multiple: true,
+          required: true
+        }
   - name: 'categories'
     label: 'Categories'
     folder: '_categories/'
@@ -113,6 +124,17 @@ collections:
       preview: false
     fields:
       - { label: 'Category', name: 'category', widget: 'string' , required: false}
+      - {
+          label: 'UID',
+          name: 'uid',
+          widget: 'relation',
+          collection: 'uid',
+          display_fields: [uid],
+          search_fields: [uid],
+          value_field: 'uid',
+          multiple: true,
+          required: true
+        }
   - name: 'trending'
     label: 'Trending'
     folder: '_trending/'
