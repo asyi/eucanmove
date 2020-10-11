@@ -84,8 +84,8 @@ ga('send', 'pageview');
                         <a href="{{ site.baseurl }}/fr/" class="fr">Fr</a>
                     </li>
                 {% else %}
-                    {% assign posts = site.posts | where: "uid", page.uid | sort: 'lang' %}
-                    {% assign langCount = posts | size%}
+                    {% assign posts = site.posts | where: "uid", page.uid[0] | sort: 'lang' %}
+                    {% assign langCount = posts | size %}
                     {% for post in posts %}
                         {% if langCount == 1 and post.lang == "en" %}
                             <li>
