@@ -57,7 +57,7 @@ collections:
           label: 'UID',
           name: 'uid',
           widget: 'relation',
-          collection: 'uids',
+          collection: 'uid',
           display_fields: [uid],
           search_fields: [uid],
           value_field: 'uid',
@@ -85,7 +85,7 @@ collections:
       - { label: 'Instagram', name: 'instagram', widget: 'string', required: false }
   - name: 'uid'
     label: 'UID'
-    folder: '_uids/'
+    folder: '_uid/'
     create: true
     slug: '{{fields.uid}}'
     editor:
