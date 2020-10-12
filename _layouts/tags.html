@@ -89,15 +89,15 @@ pagination:
     ================================================== -->
 {% endfor %}
 
-{% comment %} <script>
+<script>
         (function() {
             let pathname = window.location.pathname;
             let hash = window.location.href
-            let tag = hash.split('/').slice(-1).toString()
+            let tag = decodeURIComponent(hash.split('/').slice(-1).toString())
+            let z = {{tag}}
             removeElementsByClass("blog-grid-container")
             removeElementsByClass("loadMore")
             removeElementsByClass("tag-heading")
-
             function removeElementsByClass(className){
                 var elements = document.getElementsByClassName(className);
                 for (let i = 0; i < elements.length; i++) {
@@ -109,6 +109,6 @@ pagination:
             }
 
         })();
-</script> {% endcomment %}
+</script>
 
 <script src="{{site.baseurl}}/assets/js/pagination.js"></script>
