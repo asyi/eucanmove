@@ -1,5 +1,0 @@
----
-tag: Europe
-uid:
-  - eee
----
