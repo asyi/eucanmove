@@ -20,7 +20,7 @@
         <div class="blog-grid-trending-post-list">
             {% for trendTitle in trend.trending-fr %}
             <div class="blog-grid-trending-post-list-item">
-                <a class="blog-grid-trending-post-link" href="{{site.baseurl}}/{{ trendTitle | replace: ' ', '-'}}/">
+                <a class="blog-grid-trending-post-link" href="{{site.baseurl}}/{{ trendTitle | replace: ' ', '-' | replace: '\'', '' | }}/">
                     {{ trendTitle }}
                 </a>
             </div>

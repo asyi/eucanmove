@@ -29,9 +29,13 @@
         <div class="blog-grid-trending-post-list">
             {% for trendTitle in trending %}
             <div class="blog-grid-trending-post-list-item">
-                <a class="blog-grid-trending-post-link" href="{{site.baseurl}}/{{ trendTitle | replace: ' ', '-'}}/">
-                    {{ trendTitle }}
-                </a>
+                {% assign posts = {{site.posts | where: "title", trendTitle | group_by: "title" }}%}
+                    {% for post in posts %}
+                        {% assign post_path = post.items[0].id %}
+                        <a class="blog-grid-trending-post-link" href="{{site.baseurl}}/{{ post_path }}">
+                            {{ trendTitle }}
+                        </a>
+                    {% endfor %}
             </div>
             {% endfor %}
         </div>
