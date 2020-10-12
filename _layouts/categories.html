@@ -90,7 +90,7 @@ pagination:
     ================================================== -->
 {% endfor %}
 
-<script>
+{% comment %} <script>
 
         (function() {
             let pathname = window.location.pathname;
@@ -111,6 +111,6 @@ pagination:
             }
 
         })();
-</script>
+</script> {% endcomment %}
 
 <script src="{{site.baseurl}}/assets/js/pagination.js"></script>
