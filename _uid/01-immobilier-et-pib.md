@@ -1,3 +1,3 @@
 ---
-uid: 01-immobilier-et-pib
+uid: post-01-immobilier-et-pib
 ---
