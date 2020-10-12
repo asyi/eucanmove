@@ -1,5 +1,0 @@
----
-category: Home
-uid:
-  - fff
----
