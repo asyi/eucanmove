@@ -10,7 +10,7 @@ tags:
   - fr-Immobilier-français
   - fr-Économie
 uid:
-  - "- post-02-secteur-branche-filiere-immobiliere"
+  - post-01-immobilier-et-pib
 image: /assets/uploads/12.jpg
 ---
 L'activité immobilière, son importance économique et sa contribution à l'emploi peuvent être envisagées dans 3 cadres différents, celui :
