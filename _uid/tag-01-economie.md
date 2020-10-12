@@ -1,3 +1,3 @@
 ---
-uid: fr-tag-01-economie
+uid: tag-01-economy
 ---
