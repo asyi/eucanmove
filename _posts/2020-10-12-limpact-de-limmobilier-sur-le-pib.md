@@ -5,9 +5,11 @@ title: L'impact de l'immobilier sur le PIB
 date: 2020-10-12T04:01:29.538Z
 author: althea
 categories:
-  - Économie et organisation de l'immobilier
+  - fr-cat-test-123
+  - fr-Économie et organisation de l'immobilier
 tags:
   - fr-Économie
+  - fr-Tag Test Fran
 uid:
   - post-01-real-estate-and-gdp
 image: /assets/uploads/2bis.jpg
