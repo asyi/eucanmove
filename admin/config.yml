@@ -94,7 +94,7 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: UID, name: 'uid', widget: 'string' , required: false}
+      - { label: UID, name: 'uid', widget: 'string' , required: true, default: "tag-UID; post-UID"}
   - name: 'tags'
     label: 'Tags'
     folder: '_tags/'
@@ -103,7 +103,7 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: 'Tag', name: 'tag', widget: 'string' , required: false}
+      - { label: 'Tag', name: 'tag', widget: 'string' , required: false, default: "Tag; fr-Tag"}
       - {
           label: 'UID',
           name: 'uid',
