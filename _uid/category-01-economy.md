@@ -1,3 +1,3 @@
 ---
-uid: category-01-economy
+uid: category-01-economie
 ---
