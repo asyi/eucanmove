@@ -9,7 +9,7 @@ categories:
 tags:
   - fr-Économie
 uid:
-  - post-01-real-estate-and-gdp
+  - post-03-metiers-immobilier
 image: /assets/uploads/3.jpg
 ---
 **Les métiers liés à la production et à la promotion immobilière**
