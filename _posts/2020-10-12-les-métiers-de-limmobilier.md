@@ -5,7 +5,7 @@ title: Les métiers de l'immobilier
 date: 2020-10-12T04:14:31.230Z
 author: althea
 categories:
-  - Économie et organisation de l'immobilier
+  - fr-Économie-et-organisation-de-l'immobilier
 tags:
   - fr-Économie
 uid:

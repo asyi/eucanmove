@@ -10,16 +10,18 @@ pagination:
     {{ tag[0] }}
   {% endfor %}
 {% endcapture %}
+
 {% assign sortedtags = tags | split:' ' | sort %}
 
-{% for tag in sortedtags %}
+{% for tag in sortedtags %} 
 
     {% assign tag_title = tag | downcase %}
     {% assign tag_posts = site.tags[tag] %}
     {% assign tag_posts_size = tag_posts | size %}
-    <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: " ","-" }}">
+
+    <h4 class="mt-5 mb-neg-30 tag-heading" id="tag-heading-{{ tag_title | replace: ' ','-' }}">
         <span class="text-capitalize text-small badge badge-primary">
-            {{ tag | remove: "fr-" }}
+            {{ tag | remove: "fr-" | replace: '-', ' ' }}
         </span>
     </h4>
     <div class="blog-grid-container" id="blog-grid-container-{{tag_title}}" data-tagTitle="{{tag_title}}" data-tag="{{ forloop.index }}" data-totalTagPostsCount="{{tag_posts_size}}">
@@ -28,7 +30,7 @@ pagination:
             {% for post in tag_posts %}
                 {% if post.title != null %}
                     {% if group == null or group == post.group %}
-                        {% include postbox.html %}
+                        {% include postbox.html %}  
                     {% endif %}
                 {% endif %}
             {% endfor %}

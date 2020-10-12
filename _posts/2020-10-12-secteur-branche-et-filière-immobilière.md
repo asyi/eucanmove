@@ -5,7 +5,7 @@ title: Secteur, branche et filière immobilière
 date: 2020-10-12T04:09:32.838Z
 author: althea
 categories:
-  - Économie et organisation de l'immobilier
+  - fr-Économie-et-organisation-de-l'immobilier
 tags:
   - fr-Économie
 uid:

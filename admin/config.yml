@@ -99,11 +99,11 @@ collections:
     label: 'Tags'
     folder: '_tags/'
     create: true
-    slug: '{{fields.tag}}'
+    slug: '{{fields.tags}}'
     editor:
       preview: false
     fields:
-      - { label: 'Tag', name: 'tag', widget: 'string' , required: false, default: "Tag; fr-Tag"}
+      - { label: 'Tag', name: 'tag', widget: 'string' , required: false, default: "Tag-123-abc; fr-Tag-12-abc"}
       - {
           label: 'UID',
           name: 'uid',
@@ -119,11 +119,11 @@ collections:
     label: 'Categories'
     folder: '_categories/'
     create: true
-    slug: '{{fields.category}}'
+    slug: '{{ fields.categories }}'
     editor:
       preview: false
     fields:
-      - { label: 'Category', name: 'category', widget: 'string' , required: false}
+      - { label: 'Category', name: 'category', widget: 'string' , required: false, default: "Category-123-abc; fr-Category-12-abc"}
       - {
           label: 'UID',
           name: 'uid',
