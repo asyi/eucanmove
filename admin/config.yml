@@ -94,7 +94,7 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: UID, name: 'uid', widget: 'string' , required: true, default: "tag-UID; post-UID"}
+      - { label: UID, name: 'uid', widget: 'string' , required: true, default: "post-UID"}
   - name: 'tags'
     label: 'Tags'
     folder: '_tags/'
@@ -104,17 +104,6 @@ collections:
       preview: false
     fields:
       - { label: 'Tag', name: 'tag', widget: 'string' , required: false, default: "Tag-123-abc; fr-Tag-12-abc"}
-      - {
-          label: 'UID',
-          name: 'uid',
-          widget: 'relation',
-          collection: 'uid',
-          display_fields: [uid],
-          search_fields: [uid],
-          value_field: 'uid',
-          multiple: true,
-          required: true
-        }
   - name: 'categories'
     label: 'Categories'
     folder: '_categories/'
@@ -124,17 +113,6 @@ collections:
       preview: false
     fields:
       - { label: 'Category', name: 'category', widget: 'string' , required: false, default: "Category-123-abc; fr-Category-12-abc"}
-      - {
-          label: 'UID',
-          name: 'uid',
-          widget: 'relation',
-          collection: 'uid',
-          display_fields: [uid],
-          search_fields: [uid],
-          value_field: 'uid',
-          multiple: true,
-          required: true
-        }
   - name: 'trending'
     label: 'Trending'
     folder: '_trending/'
