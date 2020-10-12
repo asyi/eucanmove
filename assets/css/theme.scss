@@ -1064,14 +1064,26 @@ body.active-side {
         grid-column: 1fr;
         padding: 0;
         margin: 0;
-        margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
-        width: 85%;
-        max-width: 85%;
+        width: 100%;
+        max-width: 100%;
+    }
+    .entry-header {
+        margin-top: 30px;
     }
     .share {
-        left: 5px;
+        display: flex;
+        align-items: center;
+        position: inherit;
+        justify-content: center;
+        background: #fff;
+        padding-top: 15px;
+        margin-bottom: 60px;
+    }
+    .share ul li {
+        display:inline-block;
+        margin: 10px 15px !important;
     }
     .nav-icon {
         right: 0;
@@ -1120,12 +1132,9 @@ body.active-side {
     .blog-grid-container-section-4,
     .blog-grid-container-section-5,
     .blog-grid-container-section-6-visible {
-        padding: 15px 30px;
+        padding: 0px;
+        row-gap: 0;
         grid-template-columns: repeat(6, 1fr);
-    }
-
-    .blog-grid-container-section-1 {
-        padding-top: 30px;
     }
 
     .blog-grid-container-section-5 {
@@ -1205,7 +1214,7 @@ body.active-side {
         display: grid;
         grid-template-columns: repeat(6, 1fr);;
         column-gap: 30px;
-        row-gap: 30px;
+        row-gap: 0px;
         margin-top: 1.5rem;
 
         .blog-grid-item {
@@ -1217,11 +1226,10 @@ body.active-side {
 @media (max-width: 600px) {
     .container {
         padding: 0;
-        margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
-        width:90%;
-        max-width:90%;
+        width:100%;
+        max-width:100%;
     }
     .topbar {
         margin-bottom: 0;
@@ -1237,7 +1245,7 @@ body.active-side {
     }
 
 
-    .share, .wrap-search {
+    .wrap-search {
         position:relative;
     }
     .nav-items-wrapper {
@@ -1264,14 +1272,6 @@ body.active-side {
         right: unset;
         z-index:0;
     }
-    .share {
-        display: flex;
-        align-items:center;
-    }
-    .share ul li {
-        display:inline-block;
-        margin: 10px 15px !important;
-    }
 
     #menu {
         width: 100%;
@@ -1281,6 +1281,7 @@ body.active-side {
         padding: 80px 30px 80px 30px;
     }
     .related-posts {
+        margin-top: 0;
         h2 {
             font-size: 1.4rem;
         }
