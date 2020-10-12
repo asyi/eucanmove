@@ -11,7 +11,7 @@ tags:
   - fr-Immobilier-français
   - fr-Métiers
 uid:
-  - post-01-immobilier-et-pib
+  - post-03-metiers-immobilier
 image: /assets/uploads/11.jpg
 ---
 **Les métiers liés à la production et à la promotion immobilière**
