@@ -1,7 +1,7 @@
 ---
 layout: post-en
 lang: en
-title: Impact of Real Estate on French GDP
+title: The Impact of Real Estate on French GDP
 date: 2020-10-13T03:21:19.025Z
 author: althea
 categories:
