@@ -5,7 +5,7 @@ title: Jobs in Real Estate
 date: 2020-10-13T03:17:43.959Z
 author: althea
 categories:
-  - fr-Travail-et-télétravail
+  - Work-and-Remote-Work
 tags:
   - French-Real-Estate
   - Jobs
