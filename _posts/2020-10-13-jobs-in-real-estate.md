@@ -6,6 +6,7 @@ date: 2020-10-13T03:17:43.959Z
 author: althea
 categories:
   - Work-and-Remote-Work
+  - Economy-and-French-Real-Estate-Organization
 tags:
   - French-Real-Estate
   - Jobs

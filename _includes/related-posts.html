@@ -26,10 +26,11 @@
     {% assign minCommonTags =  1 %}
     {% assign maxRelatedCounter = 0 %}
     <div class="related-blog-grid-container">
-        {% for post in site.posts %}
+        {% assign filteredPosts = site.posts | where: "lang", page.lang %}
+        {% for post in filteredPosts %}
         
             {% assign sameTagCount = 0 %}
-            {% assign commonTags = '' %}
+            {% assign commonTags = '' %}    
         
             {% for category in post.categories %}
             {% if post.url != page.url %}

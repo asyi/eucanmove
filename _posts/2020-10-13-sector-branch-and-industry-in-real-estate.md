@@ -5,7 +5,7 @@ title: Sector, branch and industry in Real Estate
 date: 2020-10-13T03:23:02.982Z
 author: althea
 categories:
-  - fr-Économie-et-organisation-de-l'immobilier-français
+  - Economy-and-French-Real-Estate-Organization
 tags:
   - French-Real-Estate
   - Economy
