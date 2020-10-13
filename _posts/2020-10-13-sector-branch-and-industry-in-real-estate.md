@@ -1,5 +1,5 @@
 ---
-layout: post-en
+layout: post
 lang: en
 title: Sector, branch and industry in Real Estate
 date: 2020-10-13T03:23:02.982Z

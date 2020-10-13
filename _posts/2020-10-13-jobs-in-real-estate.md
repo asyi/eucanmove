@@ -1,5 +1,5 @@
 ---
-layout: post-en
+layout: post
 lang: en
 title: Jobs in Real Estate
 date: 2020-10-13T03:17:43.959Z
